@@ -1,0 +1,682 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <title>Laplace College Consulting (Laplace CC) — Strategy, Essays, ECs</title>
+  <meta name="description" content="Laplace College Consulting helps students build a clear admissions strategy, position extracurriculars, and execute with calm, high-touch support." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Header -->
+  <header class="site-header" data-header>
+    <div class="container header__inner">
+      <a class="brand" href="index.html" aria-label="Laplace CC home">
+        <span class="brand__mark" aria-hidden="true">
+          <img class="brand__logo" src="laplacelogo.png" alt="" />
+        </span>
+        <span class="brand__text">Laplace CC</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <button class="nav__toggle" type="button" data-nav-toggle aria-controls="navPanel" aria-expanded="false">
+          <span class="nav__toggleLines" aria-hidden="true"></span>
+          <span class="sr-only">Open menu</span>
+        </button>
+
+        <div class="nav__panel" id="navPanel" data-nav-panel>
+          <ul class="nav__list" role="list">
+            <li><a class="nav__link" href="index.html" aria-current="page">Home</a></li>
+            <li><a class="nav__link" href="packages.html">Packages</a></li>
+            <li><a class="nav__link" href="testimonials.html">Testimonials</a></li>
+            <li><a class="nav__link" href="#contact">Contact</a></li>
+          </ul>
+
+          <div class="nav__cta">
+            <a class="btn btn--primary btn--sm" href="#contact">Book a Free Intro Call</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" aria-label="Hero">
+      <div class="hero__bg" aria-hidden="true">
+        <div class="hero__glow"></div>
+        <svg class="hero__pattern" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true">
+          <defs>
+            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="currentColor" stop-opacity=".12"/>
+              <stop offset="1" stop-color="currentColor" stop-opacity="0"/>
+            </linearGradient>
+            <pattern id="p" width="44" height="44" patternUnits="userSpaceOnUse">
+              <path d="M0 44V0h44" fill="none" stroke="currentColor" stroke-opacity=".14" stroke-width="1"/>
+              <circle cx="44" cy="0" r="1.2" fill="currentColor" fill-opacity=".18"/>
+            </pattern>
+          </defs>
+          <rect width="1200" height="600" fill="url(#p)"/>
+          <path d="M1200 0C980 68 820 220 650 330C470 448 270 520 0 560V600H1200V0Z" fill="url(#g)"/>
+        </svg>
+      </div>
+
+      <div class="container hero__inner">
+        <div class="hero__copy" data-reveal>
+          <p class="eyebrow">
+            Laplace College Consulting
+            <span class="dot" aria-hidden="true"></span>
+            Strategy-first admissions guidance
+          </p>
+
+          <h1 class="hero__title">
+            Build a plan you can actually execute — and show it clearly in your applications.
+          </h1>
+
+          <p class="hero__subhead">
+            We help students turn ambition into a structured roadmap: courses, extracurricular positioning, competitions, scholarships, and essay systems —
+            with support that feels calm, rigorous, and responsive.
+          </p>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="packages.html">Explore Packages</a>
+            <a class="btn btn--ghost" href="#contact">Book a Free Intro Call</a>
+          </div>
+
+          <div class="trust" role="list" aria-label="Areas we support">
+            <div class="trust__item" role="listitem">
+              <span class="trust__badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" focusable="false" aria-hidden="true">
+                  <path d="M5 12.2l4.1 4.1L19 6.4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span>Strategy</span>
+            </div>
+            <div class="trust__item" role="listitem">
+              <span class="trust__badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" focusable="false" aria-hidden="true">
+                  <path d="M7 17h10M9 7h6M6 12h12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span>Essays</span>
+            </div>
+            <div class="trust__item" role="listitem">
+              <span class="trust__badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" focusable="false" aria-hidden="true">
+                  <path d="M8 12c0 2.2 1.8 4 4 4s4-1.8 4-4-1.8-4-4-4-4 1.8-4 4Z" stroke="currentColor" stroke-width="2.2"/>
+                  <path d="M3.5 12h3M17.5 12h3" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span>ECs</span>
+            </div>
+            <div class="trust__item" role="listitem">
+              <span class="trust__badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" focusable="false" aria-hidden="true">
+                  <path d="M7 14l2.5 2.5L17 9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M12 21c4.4 0 8-3.6 8-8V7l-8-4-8 4v6c0 4.4 3.6 8 8 8Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span>Scholarships</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero__card" aria-label="Quick snapshot" data-reveal data-reveal-delay="120">
+          <div class="mini">
+            <div class="mini__top">
+              <p class="mini__kicker">What you get</p>
+              <span class="mini__chip">Premium • Practical</span>
+            </div>
+
+            <ul class="mini__list" role="list">
+              <li>
+                <span class="mini__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M6 18V8.5C6 7.1 7.1 6 8.5 6H18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                    <path d="M9 18h9V9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                A roadmap that removes guesswork.
+              </li>
+              <li>
+                <span class="mini__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M8 7h8M8 12h8M8 17h5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                    <path d="M5 4h14v16H5z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                Essay systems — clarity, voice, and structure.
+              </li>
+              <li>
+                <span class="mini__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 3v18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                    <path d="M7 8l5-5 5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M5 21h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                EC positioning that reads “coherent,” not “busy.”
+              </li>
+            </ul>
+
+            <div class="mini__bottom">
+              <a class="btn btn--primary btn--block" href="#contact">Request Intro Call</a>
+              <p class="mini__fineprint">No hard sell — just alignment and next steps.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- What we do / features -->
+    <section class="section" aria-label="What we do">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <h2 class="h2">What we do</h2>
+          <p class="lead">
+            We focus on decisions that compound — and then help you communicate those decisions with crisp, credible writing.
+          </p>
+        </div>
+
+        <div class="features" data-reveal>
+          <article class="feature">
+            <div class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4.5 19.5V6.8c0-1.3 1-2.3 2.3-2.3h12.4c.9 0 1.6.7 1.6 1.6v13.4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M8 9h9M8 13h6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="h3">Strategy roadmap</h3>
+            <p>Course choices, testing, summers, and milestones — mapped into a plan you can follow.</p>
+          </article>
+
+          <article class="feature">
+            <div class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M6 16.5c2.2-1.9 4.6-2.9 6.5-2.9 2 0 4.4 1 6.5 2.9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M7 9.5c1.4-1.3 3.2-2 5-2s3.6.7 5 2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                <circle cx="12" cy="18.5" r="1.2" fill="currentColor"/>
+              </svg>
+            </div>
+            <h3 class="h3">EC positioning</h3>
+            <p>Turn activities into a coherent narrative — impact, leadership, and direction.</p>
+          </article>
+
+          <article class="feature">
+            <div class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M7 20h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M9 4h6l2 3v9a4 4 0 0 1-4 4h-2a4 4 0 0 1-4-4V7l2-3Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 class="h3">Essay systems</h3>
+            <p>Frameworks to draft faster and revise smarter — without losing your voice.</p>
+          </article>
+
+          <article class="feature">
+            <div class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M8 14.5l2.2 2.2L16.5 10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 21c4.4 0 8-3.6 8-8V7l-8-4-8 4v6c0 4.4 3.6 8 8 8Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 class="h3">Competition guidance</h3>
+            <p>Selection and timing for competitions and leadership paths that fit your profile.</p>
+          </article>
+
+          <article class="feature">
+            <div class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 3v18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M7 8h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M7 16h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="h3">Scholarship planning</h3>
+            <p>Strategy and examples for major scholarships — with focused review where relevant.</p>
+          </article>
+
+          <article class="feature">
+            <div class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="2.2"/>
+              </svg>
+            </div>
+            <h3 class="h3">Fast support + accountability</h3>
+            <p>Clear check-ins, responsive answers, and momentum when it matters most.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Packages preview -->
+    <section class="section section--tint" aria-label="Packages at a glance">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <h2 class="h2">Packages at a glance</h2>
+          <p class="lead">Choose the level of structure and support you want. Full details live on the Packages page.</p>
+        </div>
+
+        <div class="packages" data-reveal>
+          <article class="card package">
+            <header class="package__head">
+              <h3 class="h3">Roadmap Package</h3>
+            </header>
+            <ul class="bullets" role="list">
+              <li>A full, tailored roadmap: course plan, EC strategy, awards/competitions, testing, rec letters, summer plans</li>
+              <li>Clear weekly/monthly execution plan so students always know what to do next</li>
+              <li>Network guidance for the right person for questions (ECs, grades, essays, etc.)</li>
+              <li>Ongoing support with a guaranteed response window (ex: 48 hours)</li>
+            </ul>
+            <a class="btn btn--ghost btn--block" href="packages.html#pkg1">View details</a>
+          </article>
+
+          <article class="card package card--featured" aria-label="Recommended package">
+            <div class="ribbon" aria-hidden="true">Most popular</div>
+            <header class="package__head">
+              <h3 class="h3">Roadmap + Accelerator</h3>
+            </header>
+            <ul class="bullets" role="list">
+              <li>Everything in Roadmap Blueprint, plus high-touch support for decisions</li>
+              <li>Competition &amp; leadership methods (Wharton, WEC, NEC, and similar)</li>
+              <li>Scholarship strategy examples + review of selected submissions</li>
+              <li>Tutor matching when needed + expanded essay support bundle</li>
+            </ul>
+            <a class="btn btn--ghost btn--block" href="packages.html#pkg2">View details</a>
+          </article>
+
+          <article class="card package">
+            <header class="package__head">
+              <h3 class="h3">Laplace Elite</h3>
+            </header>
+            <ul class="bullets" role="list">
+              <li>Everything in Roadmap + Accelerator, plus 24/7 unlimited support</li>
+              <li>Full access to the HYPSM alumni network + past LaPlace client admits’ Common Apps</li>
+              <li>Unlimited offline essay revisions (Common App + supplements + scholarships)</li>
+              <li>Inside connections to access private / hard-to-reach ECs &amp; leadership opportunities (when available)</li>
+              <li>End-to-end execution support through applications + final positioning</li>
+            </ul>
+            <a class="btn btn--ghost btn--block" href="packages.html#pkg3">View details</a>
+          </article>
+
+          <article class="card package">
+            <header class="package__head">
+              <h3 class="h3">Custom Package</h3>
+            </header>
+            <ul class="bullets" role="list">
+              <li>Build your own package by choosing exactly which services you want</li>
+              <li>Mix strategy, essays, EC planning, scholarships, and interview prep</li>
+              <li>Add notes for timeline, goals, and constraints</li>
+              <li>Perfect for families who want targeted, flexible support</li>
+            </ul>
+            <a class="btn btn--ghost btn--block" href="packages.html#customPackageCard">View details</a>
+          </article>
+        </div>
+
+        <div class="section__foot" data-reveal>
+          <a class="link" href="packages.html">
+            See full package details
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Founders -->
+    <section class="section" aria-label="Meet the founders">
+      <div class="container">
+        <div class="split">
+          <div class="split__copy" data-reveal>
+            <h2 class="h2">Meet the founders</h2>
+            <p class="lead">
+              Laplace College Consulting was built by students who navigated the process at the highest level — and then turned that experience into a repeatable system for others.
+            </p>
+            <p class="body">
+              Neal Karani was admitted to Stanford from Lambert High School and has been helping students get into top colleges ever since — with a style that’s structured, calm, and honest about tradeoffs.
+              Cofounder Arhan Barve was admitted to Harvard from Lambert High School and also received a Stanford likely letter; he brings deep pattern recognition across activities, positioning, and application strategy.
+            </p>
+            <p class="body">
+              Together, they focus on the parts that matter: building a coherent profile over time and translating it into applications that read sharp, specific, and real.
+            </p>
+            <a class="btn btn--ghost" href="testimonials.html#testimonialsList">Read more</a>
+          </div>
+
+          <div class="split__cards" data-reveal data-reveal-delay="120">
+            <article class="founder card">
+              <div class="avatar" aria-hidden="true">
+                <span class="avatar__ring"></span>
+                <span class="avatar__text">NK</span>
+              </div>
+              <div class="founder__meta">
+                <h3 class="h3">Neal Karani</h3>
+                <p class="founder__line">Lambert HS → Stanford</p>
+                <p class="muted">Focused on roadmap design, execution cadence, and essays that feel precise — not performative.</p>
+              </div>
+            </article>
+
+            <article class="founder card">
+              <div class="avatar" aria-hidden="true">
+                <span class="avatar__ring"></span>
+                <span class="avatar__text">AB</span>
+              </div>
+              <div class="founder__meta">
+                <h3 class="h3">Arhan Barve</h3>
+                <p class="founder__line">Lambert HS → Harvard (Stanford likely letter)</p>
+                <p class="muted">Known for EC positioning and competition strategy — helping students find paths that fit.</p>
+              </div>
+            </article>
+
+            <div class="note card" role="note" aria-label="Founder philosophy">
+              <p class="note__title">A simple philosophy</p>
+              <p class="note__text">
+                Make fewer, better decisions — then communicate them clearly.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section section--soft" aria-label="How it works">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <h2 class="h2">How it works</h2>
+          <p class="lead">A structured process designed to keep students moving — without burnout.</p>
+        </div>
+
+        <ol class="timeline" role="list" data-reveal>
+          <li class="step">
+            <div class="step__num" aria-hidden="true">01</div>
+            <div class="step__body">
+              <h3 class="h3">Diagnose</h3>
+              <p>We map your current profile, constraints, and targets — then identify the highest-leverage gaps.</p>
+            </div>
+          </li>
+          <li class="step">
+            <div class="step__num" aria-hidden="true">02</div>
+            <div class="step__body">
+              <h3 class="h3">Build roadmap</h3>
+              <p>We design a tailored plan: classes, EC direction, competitions, testing timing, and milestones.</p>
+            </div>
+          </li>
+          <li class="step">
+            <div class="step__num" aria-hidden="true">03</div>
+            <div class="step__body">
+              <h3 class="h3">Execute weekly</h3>
+              <p>Clear weekly and monthly actions — plus feedback loops so you always know what to do next.</p>
+            </div>
+          </li>
+          <li class="step">
+            <div class="step__num" aria-hidden="true">04</div>
+            <div class="step__body">
+              <h3 class="h3">Essays &amp; positioning</h3>
+              <p>We translate your work into applications that read cohesive: activities, awards, and essays aligned.</p>
+            </div>
+          </li>
+          <li class="step">
+            <div class="step__num" aria-hidden="true">05</div>
+            <div class="step__body">
+              <h3 class="h3">Submit strong</h3>
+              <p>Final polish, pacing, and checks — so you submit with clarity and confidence.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Testimonials teaser -->
+    <section class="section" aria-label="Testimonials">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <h2 class="h2">Recent College Admissions</h2>
+          <p class="lead">Placeholder logos for now. Swap these with real college logos as you update admits.</p>
+        </div>
+
+        <div class="logo-marquee" data-reveal>
+          <ul class="logo-marquee__track" role="list" aria-label="College logos">
+            <li class="logo-marquee__item"><img class="logo-marquee__image" src="harvardlogo.png" alt="Harvard University logo" loading="lazy" /></li>
+            <li class="logo-marquee__item"><img class="logo-marquee__image" src="stanfrofofjf.png" alt="Stanford University logo" loading="lazy" /></li>
+            <li class="logo-marquee__item"><img class="logo-marquee__image" src="yale-bulldogs-1-logo-png-transparent.png" alt="Yale University logo" loading="lazy" /></li>
+            <li class="logo-marquee__item"><img class="logo-marquee__image" src="princetonlogo.png" alt="Princeton University logo" loading="lazy" /></li>
+            <li class="logo-marquee__item"><img class="logo-marquee__image" src="mitlt.png" alt="MIT logo" loading="lazy" /></li>
+            <li class="logo-marquee__item"><img class="logo-marquee__image" src="columbia.png" alt="Columbia University logo" loading="lazy" /></li>
+            <li class="logo-marquee__item"><img class="logo-marquee__image" src="upenn.png" alt="University of Pennsylvania logo" loading="lazy" /></li>
+            <li class="logo-marquee__item"><img class="logo-marquee__image" src="dart.png" alt="Dartmouth College logo" loading="lazy" /></li>
+            <li class="logo-marquee__item"><img class="logo-marquee__image" src="brown.png" alt="Brown University logo" loading="lazy" /></li>
+            <li class="logo-marquee__item"><img class="logo-marquee__image" src="duke.png" alt="Duke University logo" loading="lazy" /></li>
+            <li class="logo-marquee__item"><img class="logo-marquee__image" src="emory.png" alt="Emory University logo" loading="lazy" /></li>
+            <li class="logo-marquee__item"><img class="logo-marquee__image" src="gatech.png" alt="Georgia Tech logo" loading="lazy" /></li>
+
+            <li class="logo-marquee__item" aria-hidden="true"><img class="logo-marquee__image" src="harvardlogo.png" alt="" loading="lazy" /></li>
+            <li class="logo-marquee__item" aria-hidden="true"><img class="logo-marquee__image" src="stanfrofofjf.png" alt="" loading="lazy" /></li>
+            <li class="logo-marquee__item" aria-hidden="true"><img class="logo-marquee__image" src="yale-bulldogs-1-logo-png-transparent.png" alt="" loading="lazy" /></li>
+            <li class="logo-marquee__item" aria-hidden="true"><img class="logo-marquee__image" src="princetonlogo.png" alt="" loading="lazy" /></li>
+            <li class="logo-marquee__item" aria-hidden="true"><img class="logo-marquee__image" src="mitlt.png" alt="" loading="lazy" /></li>
+            <li class="logo-marquee__item" aria-hidden="true"><img class="logo-marquee__image" src="columbia.png" alt="" loading="lazy" /></li>
+            <li class="logo-marquee__item" aria-hidden="true"><img class="logo-marquee__image" src="upenn.png" alt="" loading="lazy" /></li>
+            <li class="logo-marquee__item" aria-hidden="true"><img class="logo-marquee__image" src="dartmouth.png" alt="" loading="lazy" /></li>
+            <li class="logo-marquee__item" aria-hidden="true"><img class="logo-marquee__image" src="brown.png" alt="" loading="lazy" /></li>
+            <li class="logo-marquee__item" aria-hidden="true"><img class="logo-marquee__image" src="duke.png" alt="" loading="lazy" /></li>
+            <li class="logo-marquee__item" aria-hidden="true"><img class="logo-marquee__image" src="emory.png" alt="" loading="lazy" /></li>
+            <li class="logo-marquee__item" aria-hidden="true"><img class="logo-marquee__image" src="gatech.png" alt="" loading="lazy" /></li>
+          </ul>
+        </div>
+
+        <div class="section__foot" data-reveal>
+          <a class="btn btn--primary" href="testimonials.html">2025 Cohort</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section--tint" aria-label="Frequently asked questions">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <h2 class="h2">FAQ</h2>
+          <p class="lead">Transparent answers, upfront.</p>
+        </div>
+
+        <div class="accordion" data-accordion data-reveal>
+          <div class="acc-item">
+            <h3 class="acc-title">
+              <button class="acc-trigger" type="button" aria-expanded="false" aria-controls="faq-1" id="faq-1-btn">
+                Do you guarantee admission?
+                <span class="acc-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="acc-panel" id="faq-1" role="region" aria-labelledby="faq-1-btn" hidden>
+              <div class="acc-content">
+                <p>No. Admissions outcomes vary and depend on many factors outside anyone’s control. We focus on the process: strategy, execution, and communication — so your applications reflect your strongest, most coherent story.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="acc-item">
+            <h3 class="acc-title">
+              <button class="acc-trigger" type="button" aria-expanded="false" aria-controls="faq-2" id="faq-2-btn">
+                What grades do you work with?
+                <span class="acc-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="acc-panel" id="faq-2" role="region" aria-labelledby="faq-2-btn" hidden>
+              <div class="acc-content">
+                <p>We work with motivated students across high school. The earlier you start, the more runway you have to build a profile; juniors and seniors benefit most from structured execution and essay systems.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="acc-item">
+            <h3 class="acc-title">
+              <button class="acc-trigger" type="button" aria-expanded="false" aria-controls="faq-3" id="faq-3-btn">
+                How does support work?
+                <span class="acc-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="acc-panel" id="faq-3" role="region" aria-labelledby="faq-3-btn" hidden>
+              <div class="acc-content">
+                <p>Support varies by package. Some families want proven examples; others want a full roadmap and ongoing guidance. We’ll align on an execution cadence and response expectations so you’re never unsure what happens next.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="acc-item">
+            <h3 class="acc-title">
+              <button class="acc-trigger" type="button" aria-expanded="false" aria-controls="faq-4" id="faq-4-btn">
+                Do you help with scholarships?
+                <span class="acc-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="acc-panel" id="faq-4" role="region" aria-labelledby="faq-4-btn" hidden>
+              <div class="acc-content">
+                <p>Yes. We help plan scholarship strategy and, in higher-touch packages, review selected submissions. We also share examples and systems to make scholarship writing feel structured and repeatable.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="acc-item">
+            <h3 class="acc-title">
+              <button class="acc-trigger" type="button" aria-expanded="false" aria-controls="faq-5" id="faq-5-btn">
+                What’s the first step?
+                <span class="acc-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="acc-panel" id="faq-5" role="region" aria-labelledby="faq-5-btn" hidden>
+              <div class="acc-content">
+                <p>Start with a free intro call. We’ll understand your goals, timeline, and constraints — then recommend the smallest package that gets you real momentum.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section contact" id="contact" aria-label="Contact">
+      <div class="container">
+        <div class="contact__grid">
+          <div class="contact__copy" data-reveal>
+            <h2 class="h2">Book a free intro call</h2>
+            <p class="lead">
+              A short conversation to understand fit: goals, timeline, and what support would actually help.
+            </p>
+
+            <div class="contact__card card">
+              <p class="muted">Prefer email?</p>
+              <p class="contact__email">
+                <a class="link" href="mailto:laplacecollegeconsulting@gmail.com">laplacecollegeconsulting@gmail.com</a>
+              </p>
+              <p class="fineprint">We typically reply within 1–2 business days.</p>
+            </div>
+          </div>
+
+          <div class="contact__formWrap" data-reveal data-reveal-delay="120">
+            <form class="form card" data-form action="https://formsubmit.co/laplacecollegeconsulting@gmail.com" method="POST" novalidate>
+              <input type="hidden" name="_subject" value="New Intro Call Request - Laplace CC" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
+              <div class="form__head">
+                <p class="form__title">Request Intro Call</p>
+                <p class="form__hint">Fields marked <span aria-hidden="true">*</span> are required.</p>
+              </div>
+
+              <div class="form__grid">
+                <div class="field">
+                  <label for="name">Name <span aria-hidden="true">*</span></label>
+                  <input id="name" name="name" type="text" autocomplete="name" required minlength="2" />
+                  <p class="field__error" data-error-for="name" aria-live="polite"></p>
+                </div>
+
+                <div class="field">
+                  <label for="email">Email <span aria-hidden="true">*</span></label>
+                  <input id="email" name="email" type="email" autocomplete="email" required />
+                  <p class="field__error" data-error-for="email" aria-live="polite"></p>
+                </div>
+
+                <div class="field field--full">
+                  <label for="grade">Student grade <span aria-hidden="true">*</span></label>
+                  <select id="grade" name="grade" required>
+                    <option value="" selected disabled>Choose…</option>
+                    <option>8th / pre–high school</option>
+                    <option>9th</option>
+                    <option>10th</option>
+                    <option>11th</option>
+                    <option>12th</option>
+                    <option>Gap year / transfer</option>
+                  </select>
+                  <p class="field__error" data-error-for="grade" aria-live="polite"></p>
+                </div>
+
+                <div class="field field--full">
+                  <label for="message">Message <span aria-hidden="true">*</span></label>
+                  <textarea id="message" name="message" rows="5" required minlength="20" placeholder="A bit about goals, timeline, and what you want help with…"></textarea>
+                  <p class="field__error" data-error-for="message" aria-live="polite"></p>
+                </div>
+
+                <div class="form__actions field--full">
+                  <button class="btn btn--primary btn--block" type="submit">Request Intro Call</button>
+                  <p class="fineprint">
+                    Admissions outcomes vary. We provide guidance and strategy — not guarantees.
+                  </p>
+                </div>
+              </div>
+
+              <div class="form__status" data-form-status role="status" aria-live="polite" hidden></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" aria-label="Footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a class="brand brand--footer" href="index.html" aria-label="Laplace CC home">
+          <span class="brand__text">Laplace CC</span>
+        </a>
+        <p class="muted">
+          Admissions outcomes vary. We provide guidance and strategy.
+        </p>
+      </div>
+
+      <nav class="footer__nav" aria-label="Footer links">
+        <div class="footer__col">
+          <p class="footer__title">Pages</p>
+          <ul role="list" class="footer__list">
+            <li><a class="footer__link" href="index.html">Home</a></li>
+            <li><a class="footer__link" href="packages.html">Packages</a></li>
+            <li><a class="footer__link" href="testimonials.html">Testimonials</a></li>
+            <li><a class="footer__link" href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <p class="footer__title">Social</p>
+          <ul role="list" class="footer__list">
+            <li><a class="footer__link" href="https://instagram.com/laplace_cc" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="footer__fineprint">
+        <p class="fineprint">© <span data-year></span> Laplace College Consulting. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

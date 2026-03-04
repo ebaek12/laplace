@@ -1,0 +1,878 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <title>Testimonials - Laplace College Consulting</title>
+  <meta name="description" content="2025 admissions outcomes and testimonials from Laplace College Consulting families." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    #testimonialsPage {
+      --tp-ink: #142132;
+      --tp-muted: #52607a;
+      --tp-accent: #cb5a4f;
+      --tp-accent-soft: #f3d8d3;
+      --tp-border: color-mix(in oklab, var(--tp-ink) 14%, transparent);
+      --tp-surface: color-mix(in oklab, white 92%, #fff7f5);
+      --tp-shadow-sm: 0 12px 28px rgba(20, 33, 50, 0.08);
+      --tp-shadow-lg: 0 26px 56px rgba(20, 33, 50, 0.14);
+      --tp-ease: cubic-bezier(.22,.9,.22,1);
+      color: var(--tp-ink);
+    }
+
+    #testimonialsPage * {
+      box-sizing: border-box;
+    }
+
+    #testimonialsPage .tp-wrap {
+      width: min(100% - 2rem, 1160px);
+      margin-inline: auto;
+    }
+
+    #testimonialsPage .tp-hero {
+      padding: clamp(2.4rem, 5vw, 4.3rem) 0 clamp(2rem, 4vw, 3rem);
+      position: relative;
+    }
+
+    #testimonialsPage .tp-hero::before {
+      content: "";
+      position: absolute;
+      inset: -12% -10% auto;
+      height: min(56vw, 420px);
+      background:
+        radial-gradient(760px 320px at 20% 30%, color-mix(in oklab, var(--tp-accent) 20%, transparent), transparent 70%),
+        radial-gradient(760px 340px at 82% 20%, color-mix(in oklab, var(--tp-accent) 12%, transparent), transparent 74%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    #testimonialsPage .tp-copy {
+      max-width: 72ch;
+    }
+
+    #testimonialsPage .tp-eyebrow {
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .82rem;
+      color: var(--tp-muted);
+    }
+
+    #testimonialsPage .tp-title {
+      margin: .6rem 0 0;
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      max-width: 15ch;
+    }
+
+    #testimonialsPage .tp-subtitle {
+      margin: .95rem 0 0;
+      color: var(--tp-muted);
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      max-width: 62ch;
+    }
+
+    #testimonialsPage .tp-showcase {
+      margin-top: clamp(1.4rem, 3vw, 2.1rem);
+      border: 1px solid var(--tp-border);
+      border-radius: 28px;
+      background: linear-gradient(180deg, color-mix(in oklab, white 96%, #fff7f5), #fff);
+      box-shadow: var(--tp-shadow-lg);
+      padding: clamp(1rem, 2.2vw, 1.5rem);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #testimonialsPage .tp-burst {
+      position: absolute;
+      inset: -30% -5% auto;
+      height: 300px;
+      background:
+        radial-gradient(circle at 50% 45%, color-mix(in oklab, var(--tp-accent) 28%, transparent), transparent 48%),
+        conic-gradient(from 0deg,
+          color-mix(in oklab, var(--tp-accent) 18%, transparent),
+          transparent 22%,
+          color-mix(in oklab, var(--tp-accent) 14%, transparent) 40%,
+          transparent 60%,
+          color-mix(in oklab, var(--tp-accent) 15%, transparent) 80%,
+          transparent);
+      opacity: 0;
+      transform: scale(.82) rotate(-8deg);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    #testimonialsPage.is-ready .tp-burst {
+      animation: tp-burst 1200ms var(--tp-ease) 140ms forwards;
+    }
+
+    #testimonialsPage .tp-kicker {
+      margin: 0 0 .95rem;
+      position: relative;
+      z-index: 1;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: color-mix(in oklab, var(--tp-accent) 72%, var(--tp-ink));
+    }
+
+    #testimonialsPage .tp-featured,
+    #testimonialsPage .tp-grid {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    #testimonialsPage .tp-featured {
+      grid-template-columns: 1fr;
+      margin-bottom: 1rem;
+    }
+
+    #testimonialsPage .tp-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @media (min-width: 760px) {
+      #testimonialsPage .tp-featured {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      #testimonialsPage .tp-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    #testimonialsPage .tp-school {
+      border: 1px solid var(--tp-border);
+      border-radius: 20px;
+      background: var(--tp-surface);
+      box-shadow: var(--tp-shadow-sm);
+      padding: .9rem .85rem;
+      text-align: center;
+      min-height: 160px;
+      display: grid;
+      align-content: start;
+      gap: .5rem;
+      position: relative;
+      opacity: 0;
+      transform: scale(.84) translateY(10px) rotate(-2deg);
+      overflow: hidden;
+    }
+
+    #testimonialsPage .tp-school--featured {
+      min-height: 304px;
+      border-color: color-mix(in oklab, var(--tp-accent) 35%, var(--tp-border));
+      background: linear-gradient(160deg, #fff, color-mix(in oklab, var(--tp-accent-soft) 50%, #fff));
+      display: grid;
+      grid-template-rows: minmax(146px, auto) auto;
+      align-content: start;
+      justify-items: center;
+      row-gap: .4rem;
+      padding: 1rem .9rem 1.2rem;
+      isolation: isolate;
+      overflow: hidden;
+    }
+
+    #testimonialsPage .tp-school--featured::before {
+      content: "";
+      position: absolute;
+      width: 194px;
+      height: 194px;
+      top: -62px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, color-mix(in oklab, var(--tp-accent) 30%, transparent), transparent 70%);
+      opacity: .58;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    #testimonialsPage .tp-school--plain {
+      min-height: 124px;
+      justify-content: center;
+    }
+
+    #testimonialsPage.is-ready .tp-school {
+      animation: tp-pop 680ms var(--tp-ease) forwards;
+      animation-delay: calc(120ms + (var(--i) * 56ms));
+    }
+
+    #testimonialsPage .tp-logo {
+      width: 132px;
+      height: 64px;
+      margin: 0 auto;
+      border-radius: 0;
+      border: 0;
+      background: transparent;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: visible;
+      line-height: 0;
+      z-index: 1;
+    }
+
+    #testimonialsPage .tp-school--featured .tp-logo {
+      width: clamp(126px, 22vw, 156px);
+      height: auto;
+      aspect-ratio: 1 / 1;
+      margin: .08rem auto .14rem;
+      border-radius: 18px;
+      border: 1px solid color-mix(in oklab, var(--tp-accent) 22%, var(--tp-border));
+      background: linear-gradient(155deg, rgba(255, 255, 255, .95), color-mix(in oklab, var(--tp-accent-soft) 40%, #fff));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .8), 0 11px 24px rgba(20, 33, 50, .1);
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    #testimonialsPage .tp-school--featured .tp-logo::before {
+      content: "";
+      position: absolute;
+      inset: -28% -10%;
+      background: radial-gradient(circle at 50% 46%, color-mix(in oklab, var(--tp-accent) 38%, transparent), transparent 65%);
+      opacity: .62;
+      transform: scale(.84);
+      pointer-events: none;
+      z-index: 0;
+      animation: tp-logo-glow 4.6s ease-in-out infinite;
+    }
+
+    #testimonialsPage .tp-school--featured .tp-logo::after {
+      content: "";
+      position: absolute;
+      inset: -4px -58%;
+      background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, .78) 50%, transparent 62%);
+      transform: translateX(-85%) skewX(-18deg);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    #testimonialsPage.is-ready .tp-school--featured .tp-logo::after {
+      animation: tp-logo-sweep 4.3s var(--tp-ease) calc(580ms + (var(--i) * 180ms)) infinite;
+    }
+
+    #testimonialsPage .tp-logo img {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+    }
+
+    #testimonialsPage .tp-school--featured .tp-logo img {
+      width: 100%;
+      height: 100%;
+      padding: 12px;
+      box-sizing: border-box;
+      object-fit: contain;
+      position: relative;
+      z-index: 1;
+      transform-origin: 50% 50%;
+    }
+
+    #testimonialsPage.is-ready .tp-school--featured .tp-logo img {
+      animation:
+        tp-logo-rise 860ms var(--tp-ease) calc(220ms + (var(--i) * 90ms)) both,
+        tp-logo-float 3.8s ease-in-out calc(1160ms + (var(--i) * 120ms)) infinite;
+    }
+
+    #testimonialsPage .tp-schoolName {
+      margin: 0;
+      font-size: .95rem;
+      font-weight: 700;
+      letter-spacing: -.01em;
+    }
+
+    #testimonialsPage .tp-schoolCount {
+      margin: 0;
+      color: var(--tp-muted);
+      font-size: .9rem;
+      font-weight: 600;
+    }
+
+    #testimonialsPage .tp-schoolCount strong {
+      color: color-mix(in oklab, var(--tp-accent) 84%, var(--tp-ink));
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+
+    #testimonialsPage .tp-schoolCount--featured {
+      margin: 0;
+      line-height: 1.25;
+      position: static;
+      width: 100%;
+      text-align: center;
+      min-height: 2.35em;
+      z-index: 2;
+    }
+
+    #testimonialsPage .tp-featureMeta {
+      width: min(100%, 18ch);
+      display: grid;
+      gap: .38rem;
+      text-align: center;
+      margin-top: 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    #testimonialsPage .tp-school--featured .tp-schoolName {
+      width: 100%;
+      text-align: center;
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    #testimonialsPage .tp-actions {
+      margin-top: 1.05rem;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    #testimonialsPage .tp-top20 {
+      padding: clamp(1.3rem, 3vw, 2.2rem) 0 0;
+    }
+
+    #testimonialsPage .tp-h2 {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+      font-weight: 400;
+      letter-spacing: -.02em;
+    }
+
+    #testimonialsPage .tp-top20Copy {
+      margin: .6rem 0 0;
+      color: var(--tp-muted);
+      max-width: 64ch;
+    }
+
+    #testimonialsPage .tp-collegeList {
+      margin: 1rem 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: .7rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @media (min-width: 900px) {
+      #testimonialsPage .tp-collegeList {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    #testimonialsPage .tp-collegeList li {
+      border: 1px solid var(--tp-border);
+      border-radius: 999px;
+      padding: .52rem .72rem;
+      background: #fff;
+      box-shadow: var(--tp-shadow-sm);
+      font-weight: 700;
+      font-size: .9rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    #testimonialsPage .tp-testimonials {
+      padding: clamp(2rem, 5vw, 4rem) 0 clamp(3rem, 6vw, 4.8rem);
+    }
+
+    #testimonialsPage .tp-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.1rem;
+    }
+
+    #testimonialsPage .tp-head p {
+      margin: .55rem 0 0;
+      color: var(--tp-muted);
+      max-width: 64ch;
+    }
+
+    #testimonialsPage .tp-cards {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 760px) {
+      #testimonialsPage .tp-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 1120px) {
+      #testimonialsPage .tp-cards {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    #testimonialsPage .tp-card {
+      border: 1px solid var(--tp-border);
+      border-radius: 20px;
+      background: #fff;
+      box-shadow: var(--tp-shadow-sm);
+      padding: 1rem;
+      min-height: 190px;
+      display: grid;
+      gap: .75rem;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: transform 560ms var(--tp-ease), opacity 560ms var(--tp-ease), border-color 220ms var(--tp-ease);
+    }
+
+    #testimonialsPage .tp-card.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #testimonialsPage .tp-card:hover {
+      transform: translateY(-3px);
+      border-color: color-mix(in oklab, var(--tp-accent) 34%, var(--tp-border));
+    }
+
+    #testimonialsPage .tp-card blockquote {
+      margin: 0;
+      color: #263147;
+    }
+
+    #testimonialsPage .tp-meta {
+      margin-top: auto;
+      padding-top: .65rem;
+      border-top: 1px solid var(--tp-border);
+    }
+
+    #testimonialsPage .tp-metaName {
+      margin: 0;
+      font-weight: 800;
+      font-size: .95rem;
+      letter-spacing: -.01em;
+    }
+
+    #testimonialsPage .tp-metaOutcome {
+      margin: .22rem 0 0;
+      color: var(--tp-muted);
+      font-size: .9rem;
+      font-weight: 600;
+    }
+
+    #testimonialsPage [data-tp-reveal] {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 560ms var(--tp-ease), transform 560ms var(--tp-ease);
+    }
+
+    #testimonialsPage [data-tp-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes tp-pop {
+      0% { opacity: 0; transform: scale(.84) translateY(10px) rotate(-2deg); }
+      62% { opacity: 1; transform: scale(1.04) translateY(-2px) rotate(1deg); }
+      100% { opacity: 1; transform: scale(1) translateY(0) rotate(0); }
+    }
+
+    @keyframes tp-burst {
+      0% { opacity: 0; transform: scale(.82) rotate(-8deg); }
+      55% { opacity: .66; }
+      100% { opacity: .28; transform: scale(1.05) rotate(8deg); }
+    }
+
+    @keyframes tp-logo-rise {
+      0% { opacity: 0; transform: translateY(16px) scale(.86) rotate(-4deg); }
+      68% { opacity: 1; transform: translateY(-2px) scale(1) rotate(.8deg); }
+      100% { opacity: 1; transform: translateY(0) scale(1) rotate(0); }
+    }
+
+    @keyframes tp-logo-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    @keyframes tp-logo-glow {
+      0%, 100% { opacity: .56; transform: scale(.84); }
+      50% { opacity: .88; transform: scale(1.04); }
+    }
+
+    @keyframes tp-logo-sweep {
+      0%, 60% { opacity: 0; transform: translateX(-85%) skewX(-18deg); }
+      74% { opacity: .82; }
+      100% { opacity: 0; transform: translateX(115%) skewX(-18deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #testimonialsPage .tp-burst {
+        display: none;
+      }
+
+      #testimonialsPage .tp-school,
+      #testimonialsPage [data-tp-reveal],
+      #testimonialsPage .tp-card {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        animation: none !important;
+      }
+
+      #testimonialsPage .tp-school--featured .tp-logo::before,
+      #testimonialsPage .tp-school--featured .tp-logo::after,
+      #testimonialsPage .tp-school--featured .tp-logo img {
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" data-header>
+    <div class="container header__inner">
+      <a class="brand" href="index.html" aria-label="Laplace CC home">
+        <span class="brand__mark" aria-hidden="true">
+          <img class="brand__logo" src="laplacelogo.png" alt="" />
+        </span>
+        <span class="brand__text">Laplace CC</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <button class="nav__toggle" type="button" data-nav-toggle aria-controls="navPanel" aria-expanded="false">
+          <span class="nav__toggleLines" aria-hidden="true"></span>
+          <span class="sr-only">Open menu</span>
+        </button>
+
+        <div class="nav__panel" id="navPanel" data-nav-panel>
+          <ul class="nav__list" role="list">
+            <li><a class="nav__link" href="index.html">Home</a></li>
+            <li><a class="nav__link" href="packages.html">Packages</a></li>
+            <li><a class="nav__link" href="testimonials.html" aria-current="page">Testimonials</a></li>
+            <li><a class="nav__link" href="index.html#contact">Contact</a></li>
+          </ul>
+
+          <div class="nav__cta">
+            <a class="btn btn--primary btn--sm" href="index.html#contact">Book a Free Intro Call</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div id="testimonialsPage">
+      <section class="tp-hero" aria-labelledby="cohortTitle">
+        <div class="tp-wrap">
+          <div class="tp-copy" data-tp-reveal>
+            <p class="tp-eyebrow">Laplace College Consulting</p>
+            <h1 class="tp-title" id="cohortTitle">2025 Cohort Outcomes</h1>
+            <p class="tp-subtitle">Admission results from our 2025 applicant cohort, with featured outcomes and a full list of top U.S. colleges families commonly target.</p>
+          </div>
+
+          <div class="tp-showcase" data-tp-reveal aria-label="Acceptances showcase">
+            <div class="tp-burst" aria-hidden="true"></div>
+            <p class="tp-kicker">Featured Outcomes</p>
+            <ul class="tp-featured" id="tpFeaturedGrid" role="list"></ul>
+
+            <p class="tp-kicker">Additional Acceptances</p>
+            <ul class="tp-grid" id="tpAcceptanceGrid" role="list"></ul>
+
+            <div class="tp-actions">
+              <a class="btn btn--primary" href="#collegeList">View Complete College List</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tp-top20" id="collegeList" aria-labelledby="collegeListTitle" data-tp-reveal>
+        <div class="tp-wrap">
+          <h2 class="tp-h2" id="collegeListTitle">Colleges Our Students Were Admitted To</h2>
+          <p class="tp-top20Copy">Including Top 20 institutions, plus Georgia Tech and the University of Georgia.</p>
+          <ul class="tp-collegeList">
+            <li>Princeton University</li>
+            <li>Massachusetts Institute of Technology</li>
+            <li>Harvard University</li>
+            <li>Stanford University</li>
+            <li>Yale University</li>
+            <li>California Institute of Technology</li>
+            <li>Duke University</li>
+            <li>Johns Hopkins University</li>
+            <li>Northwestern University</li>
+            <li>Columbia University</li>
+            <li>University of Pennsylvania</li>
+            <li>University of Chicago</li>
+            <li>Cornell University</li>
+            <li>Brown University</li>
+            <li>Dartmouth College</li>
+            <li>Vanderbilt University</li>
+            <li>Rice University</li>
+            <li>University of Notre Dame</li>
+            <li>University of California, Los Angeles</li>
+            <li>University of California, Berkeley</li>
+            <li>Georgia Institute of Technology</li>
+            <li>University of Georgia</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="tp-testimonials" id="testimonialsList" aria-labelledby="testimonialHeading">
+        <div class="tp-wrap">
+          <div class="tp-head" data-tp-reveal>
+            <div>
+              <h2 class="tp-h2" id="testimonialHeading">Client Testimonials</h2>
+              <p>Short reflections from students on planning, execution, and final application positioning.</p>
+            </div>
+            <a class="btn btn--ghost" href="index.html#contact">Book a Free Intro Call</a>
+          </div>
+
+          <ul class="tp-cards" role="list">
+            <li class="tp-card tp-reveal">
+              <blockquote>“The roadmap removed uncertainty. I always knew exactly what to prioritize each week.”</blockquote>
+              <div class="tp-meta">
+                <p class="tp-metaName">Maya R.</p>
+                <p class="tp-metaOutcome">Admitted to Stanford (REA)</p>
+              </div>
+            </li>
+            <li class="tp-card tp-reveal">
+              <blockquote>“Their feedback made my essays significantly sharper without changing my voice.”</blockquote>
+              <div class="tp-meta">
+                <p class="tp-metaName">Ethan L.</p>
+                <p class="tp-metaOutcome">Admitted to Yale</p>
+              </div>
+            </li>
+            <li class="tp-card tp-reveal">
+              <blockquote>“The admissions strategy was clear, practical, and paced in a way that reduced stress.”</blockquote>
+              <div class="tp-meta">
+                <p class="tp-metaName">Nora K.</p>
+                <p class="tp-metaOutcome">Admitted to Columbia</p>
+              </div>
+            </li>
+            <li class="tp-card tp-reveal">
+              <blockquote>“Every activity and essay connected to one coherent narrative by application season.”</blockquote>
+              <div class="tp-meta">
+                <p class="tp-metaName">Daniel P.</p>
+                <p class="tp-metaOutcome">Admitted to UPenn (Wharton)</p>
+              </div>
+            </li>
+            <li class="tp-card tp-reveal">
+              <blockquote>“Communication was quick and specific. I received direct guidance when decisions mattered.”</blockquote>
+              <div class="tp-meta">
+                <p class="tp-metaName">Sofia T.</p>
+                <p class="tp-metaOutcome">Admitted to Duke</p>
+              </div>
+            </li>
+            <li class="tp-card tp-reveal">
+              <blockquote>“Laplace helped translate my profile into a focused application strategy end-to-end.”</blockquote>
+              <div class="tp-meta">
+                <p class="tp-metaName">Arjun S.</p>
+                <p class="tp-metaOutcome">Admitted to Harvard</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer" aria-label="Footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a class="brand brand--footer" href="index.html" aria-label="Laplace CC home">
+          <span class="brand__text">Laplace CC</span>
+        </a>
+        <p class="muted">Admissions outcomes vary. We provide guidance and strategy.</p>
+      </div>
+
+      <nav class="footer__nav" aria-label="Footer links">
+        <div class="footer__col">
+          <p class="footer__title">Pages</p>
+          <ul role="list" class="footer__list">
+            <li><a class="footer__link" href="index.html">Home</a></li>
+            <li><a class="footer__link" href="packages.html">Packages</a></li>
+            <li><a class="footer__link" href="testimonials.html">Testimonials</a></li>
+            <li><a class="footer__link" href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <p class="footer__title">Social</p>
+          <ul role="list" class="footer__list">
+            <li><a class="footer__link" href="https://instagram.com/laplace_cc" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="footer__fineprint">
+        <p class="fineprint">© <span data-year></span> Laplace College Consulting. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+  <script>
+    (() => {
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      const featuredSchools = [
+        { name: "Harvard", logo: "harvardlogo.png", count: 1 },
+        { name: "Stanford", logo: "stanfrofofjf.png", count: 6 },
+        { name: "Yale", logo: "yale-bulldogs-1-logo-png-transparent.png", count: 2 }
+      ];
+
+      const additionalSchools = [
+        { name: "Princeton", count: 3 },
+        { name: "MIT", count: 1 },
+        { name: "Columbia", count: 3 },
+        { name: "UPenn", count: 3 },
+        { name: "Brown", count: 2 },
+        { name: "Dartmouth", count: 1 },
+        { name: "Cornell", count: 2 },
+        { name: "Duke", count: 3 },
+        { name: "UChicago", count: 2 },
+        { name: "Northwestern", count: 2 },
+        { name: "Caltech", count: 1 },
+        { name: "Johns Hopkins", count: 2 },
+        { name: "Vanderbilt", count: 2 },
+        { name: "Rice", count: 1 },
+        { name: "Notre Dame", count: 2 },
+        { name: "Berkeley", count: 4 },
+        { name: "UCLA", count: 4 },
+        { name: "Georgia Tech", count: 3 },
+        { name: "University of Georgia", count: 2 }
+      ];
+
+      const page = document.getElementById("testimonialsPage");
+      const featuredGrid = document.getElementById("tpFeaturedGrid");
+      const acceptanceGrid = document.getElementById("tpAcceptanceGrid");
+
+      if (!page || !featuredGrid || !acceptanceGrid) return;
+
+      const makeCard = (school, index, featured = false) => {
+        const item = document.createElement("li");
+        item.className = featured ? "tp-school tp-school--featured" : "tp-school tp-school--plain";
+        item.style.setProperty("--i", String(index));
+        if (featured) {
+          item.innerHTML = `
+            <div class="tp-logo">
+              <img src="${school.logo}" alt="${school.name} logo" loading="lazy" decoding="async" />
+            </div>
+            <div class="tp-featureMeta">
+              <p class="tp-schoolCount tp-schoolCount--featured"><strong data-tp-count="${school.count}">0</strong> offers</p>
+              <p class="tp-schoolName">${school.name}</p>
+            </div>
+          `;
+        } else {
+          item.innerHTML = `
+            <p class="tp-schoolName">${school.name}</p>
+            <p class="tp-schoolCount"><strong data-tp-count="${school.count}">0</strong> offers</p>
+          `;
+        }
+        return item;
+      };
+
+      const renderCards = () => {
+        const featuredFrag = document.createDocumentFragment();
+        const additionalFrag = document.createDocumentFragment();
+
+        featuredSchools.forEach((school, idx) => {
+          featuredFrag.appendChild(makeCard(school, idx, true));
+        });
+
+        additionalSchools.forEach((school, idx) => {
+          additionalFrag.appendChild(makeCard(school, idx + featuredSchools.length));
+        });
+
+        featuredGrid.appendChild(featuredFrag);
+        acceptanceGrid.appendChild(additionalFrag);
+      };
+
+      const animateCount = (el, target, delay) => {
+        if (reduceMotion) {
+          el.textContent = String(target);
+          return;
+        }
+
+        const start = performance.now() + delay;
+        const duration = 900;
+
+        const tick = (now) => {
+          if (now < start) {
+            requestAnimationFrame(tick);
+            return;
+          }
+
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = String(Math.round(target * eased));
+
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+
+        requestAnimationFrame(tick);
+      };
+
+      const initCountUp = () => {
+        const countEls = Array.from(page.querySelectorAll("[data-tp-count]"));
+        countEls.forEach((el, idx) => {
+          const value = Number(el.getAttribute("data-tp-count") || "0");
+          animateCount(el, value, 220 + idx * 60);
+        });
+      };
+
+      const initReveal = () => {
+        const revealEls = Array.from(page.querySelectorAll("[data-tp-reveal], .tp-reveal"));
+        if (!revealEls.length) return;
+
+        if (reduceMotion) {
+          revealEls.forEach((el) => el.classList.add("is-visible"));
+          return;
+        }
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            });
+          },
+          { threshold: 0.14, rootMargin: "0px 0px -10% 0px" }
+        );
+
+        revealEls.forEach((el) => observer.observe(el));
+      };
+
+      renderCards();
+      requestAnimationFrame(() => page.classList.add("is-ready"));
+      initCountUp();
+      initReveal();
+    })();
+  </script>
+</body>
+</html>

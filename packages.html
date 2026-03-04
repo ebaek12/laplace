@@ -1,0 +1,1739 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <title>Packages - Laplace College Consulting</title>
+  <meta name="description" content="Select admissions consulting packages, build a custom package, submit your preferences, and schedule a free consultation." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    #packagesPage {
+      --pkg-border: color-mix(in oklab, var(--ink-1) 15%, transparent);
+      --pkg-border-strong: color-mix(in oklab, var(--accent) 26%, var(--pkg-border));
+      --pkg-surface: color-mix(in oklab, white 84%, var(--paper-0));
+      --pkg-surface-soft: color-mix(in oklab, var(--accent) 6%, var(--pkg-surface));
+      --pkg-shadow: 0 16px 36px rgba(11, 18, 32, 0.08);
+      --pkg-ease: cubic-bezier(.22,.9,.22,1);
+      color: var(--text);
+    }
+
+    #packagesPage * {
+      box-sizing: border-box;
+    }
+
+    #packagesPage .pkg-wrap {
+      width: min(100% - 2rem, 1160px);
+      margin-inline: auto;
+    }
+
+    #packagesPage .pkg-hero {
+      position: relative;
+      padding: clamp(2.4rem, 5vw, 4.1rem) 0 1.2rem;
+    }
+
+    #packagesPage .pkg-hero::before {
+      content: "";
+      position: absolute;
+      inset: -16% -10% auto;
+      height: min(58vw, 430px);
+      pointer-events: none;
+      background:
+        radial-gradient(700px 300px at 15% 22%, color-mix(in oklab, var(--accent) 20%, transparent), transparent 70%),
+        radial-gradient(720px 320px at 85% 18%, color-mix(in oklab, var(--accent-2) 18%, transparent), transparent 72%);
+      z-index: -1;
+    }
+
+    #packagesPage .pkg-eyebrow {
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    #packagesPage .pkg-title {
+      margin: .62rem 0 0;
+      font-family: var(--font-serif);
+      font-weight: 400;
+      letter-spacing: -.03em;
+      line-height: 1.05;
+      font-size: clamp(2rem, 4.8vw, 3.6rem);
+      max-width: 16ch;
+    }
+
+    #packagesPage .pkg-subtitle {
+      margin: .92rem 0 0;
+      max-width: 70ch;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.7vw, 1.18rem);
+    }
+
+    #packagesPage .pkg-guideHint {
+      margin-top: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      padding: .56rem .72rem;
+      border: 1px solid var(--pkg-border);
+      border-radius: 999px;
+      background: color-mix(in oklab, var(--surface) 82%, transparent);
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .pkg-tutorialOverlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1800;
+      display: grid;
+      place-items: center;
+      padding: .6rem;
+      background: rgba(10, 18, 31, .6);
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 240ms var(--pkg-ease);
+    }
+
+    .pkg-tutorialOverlay.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .pkg-tutorial {
+      width: min(100%, 1020px);
+      min-height: min(calc(100dvh - 1.2rem), 760px);
+      max-height: calc(100dvh - 1.2rem);
+      overflow: auto;
+      background: linear-gradient(155deg, #fff, color-mix(in oklab, var(--accent) 6%, #fff));
+      border: 1px solid color-mix(in oklab, var(--accent) 26%, var(--pkg-border));
+      border-radius: 20px;
+      box-shadow: 0 34px 70px rgba(10, 18, 31, .22);
+      padding: clamp(1.15rem, 2.6vw, 1.9rem);
+      position: relative;
+      display: grid;
+      gap: .15rem;
+    }
+
+    .pkg-tutorialTitle {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-weight: 400;
+      letter-spacing: -.02em;
+      font-size: clamp(1.95rem, 4.1vw, 2.7rem);
+      line-height: 1.1;
+    }
+
+    .pkg-tutorialCopy {
+      margin: .58rem 0 0;
+      color: var(--muted);
+      font-size: clamp(1.1rem, 1.7vw, 1.25rem);
+      line-height: 1.55;
+    }
+
+    .pkg-tutorialSteps {
+      margin: 1rem 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: .72rem;
+    }
+
+    .pkg-tutorialSteps li {
+      display: flex;
+      gap: .72rem;
+      align-items: flex-start;
+      border: 1px solid var(--pkg-border);
+      border-radius: 14px;
+      background: color-mix(in oklab, var(--surface) 87%, transparent);
+      padding: .94rem 1rem;
+      font-size: clamp(1.03rem, 1.34vw, 1.13rem);
+      line-height: 1.55;
+    }
+
+    .pkg-stepNum {
+      flex: 0 0 auto;
+      min-width: 2ch;
+      font-weight: 800;
+      letter-spacing: .02em;
+      color: color-mix(in oklab, var(--accent) 72%, var(--text));
+      font-size: 1.1em;
+    }
+
+    .pkg-tutorialWarn {
+      margin: 1rem 0 0;
+      padding: .85rem .95rem;
+      border-radius: 12px;
+      border: 1px solid color-mix(in oklab, var(--accent) 36%, var(--pkg-border));
+      background: color-mix(in oklab, var(--accent) 11%, var(--surface));
+      font-weight: 700;
+      font-size: clamp(1.05rem, 1.48vw, 1.2rem);
+      line-height: 1.5;
+    }
+
+    .pkg-tutorialActions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 1rem;
+      gap: .55rem;
+    }
+
+    .pkg-closeBtn {
+      position: absolute;
+      top: .6rem;
+      right: .6rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      border: 1px solid var(--pkg-border);
+      background: color-mix(in oklab, var(--surface) 85%, transparent);
+      cursor: pointer;
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      transition: background 220ms var(--pkg-ease), border-color 220ms var(--pkg-ease), transform 140ms var(--pkg-ease);
+    }
+
+    .pkg-closeBtn:hover {
+      border-color: var(--pkg-border-strong);
+      background: color-mix(in oklab, var(--accent) 10%, var(--surface));
+      transform: translateY(-1px);
+    }
+
+    .pkg-closeBtn svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    #packagesPage .pkg-main {
+      padding: .6rem 0 clamp(2.4rem, 5vw, 4.6rem);
+    }
+
+    #packagesPage .pkg-intake {
+      margin-top: .1rem;
+      border: 1px solid color-mix(in oklab, var(--accent) 26%, var(--pkg-border));
+      border-radius: 20px;
+      background:
+        linear-gradient(160deg, color-mix(in oklab, #fff 88%, var(--accent) 4%), color-mix(in oklab, #fff 80%, var(--accent) 8%)),
+        var(--pkg-surface);
+      box-shadow: var(--pkg-shadow);
+      padding: clamp(1rem, 2.4vw, 1.25rem);
+    }
+
+    #packagesPage .pkg-stepTitle {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+      letter-spacing: -.02em;
+    }
+
+    #packagesPage .pkg-stepCopy {
+      margin: .55rem 0 0;
+      color: var(--muted);
+      max-width: 72ch;
+    }
+
+    #packagesPage .pkg-intakeGrid {
+      margin-top: .95rem;
+      display: grid;
+      gap: .78rem;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 760px) {
+      #packagesPage .pkg-intakeGrid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    #packagesPage .pkg-field {
+      display: grid;
+      gap: .42rem;
+    }
+
+    #packagesPage .pkg-field label {
+      font-weight: 700;
+      letter-spacing: -.01em;
+      font-size: .93rem;
+    }
+
+    #packagesPage .pkg-field input,
+    #packagesPage .pkg-field select {
+      width: 100%;
+      min-height: 44px;
+      border-radius: 12px;
+      border: 1px solid var(--pkg-border);
+      background: color-mix(in oklab, var(--surface) 92%, transparent);
+      color: var(--text);
+      padding: .64rem .72rem;
+      font-size: .95rem;
+      transition: border-color 220ms var(--pkg-ease), background 220ms var(--pkg-ease), box-shadow 220ms var(--pkg-ease);
+    }
+
+    #packagesPage .pkg-field input:hover,
+    #packagesPage .pkg-field select:hover {
+      border-color: var(--pkg-border-strong);
+      background: #fff;
+    }
+
+    #packagesPage .pkg-field input:focus,
+    #packagesPage .pkg-field select:focus {
+      outline: none;
+      border-color: color-mix(in oklab, var(--accent) 44%, var(--pkg-border));
+      box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 16%, transparent);
+      background: #fff;
+    }
+
+    #packagesPage .pkg-lockHint {
+      margin: .75rem 0 0;
+      border: 1px solid color-mix(in oklab, var(--accent) 30%, var(--pkg-border));
+      border-radius: 12px;
+      background: color-mix(in oklab, var(--accent) 12%, var(--surface));
+      padding: .66rem .72rem;
+      font-size: .92rem;
+      color: color-mix(in oklab, var(--accent) 76%, var(--text));
+      font-weight: 700;
+    }
+
+    #packagesPage .pkg-lockHint[data-state="ready"] {
+      border-color: color-mix(in oklab, #299b57 42%, var(--pkg-border));
+      background: color-mix(in oklab, #299b57 11%, var(--surface));
+      color: color-mix(in oklab, #1f6f40 88%, var(--text));
+    }
+
+    #packagesPage .pkg-selection {
+      margin-top: 1.12rem;
+      transition: opacity 220ms var(--pkg-ease), filter 220ms var(--pkg-ease);
+    }
+
+    #packagesPage .pkg-selection[data-locked="true"] {
+      opacity: .8;
+    }
+
+    #packagesPage .pkg-grid {
+      margin: 1.25rem 0 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      list-style: none;
+      padding: 0;
+    }
+
+    @media (min-width: 760px) {
+      #packagesPage .pkg-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    #packagesPage .pkg-card {
+      border: 1px solid var(--pkg-border);
+      border-radius: 20px;
+      background: var(--pkg-surface);
+      box-shadow: var(--pkg-shadow);
+      padding: 1rem;
+      display: grid;
+      align-content: start;
+      gap: .95rem;
+      position: relative;
+      min-height: 290px;
+      transition: transform 220ms var(--pkg-ease), border-color 220ms var(--pkg-ease), box-shadow 220ms var(--pkg-ease);
+    }
+
+    #packagesPage .pkg-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--pkg-border-strong);
+      box-shadow: 0 20px 36px rgba(11, 18, 32, .12);
+    }
+
+    #packagesPage .pkg-card:focus-within {
+      border-color: color-mix(in oklab, var(--accent) 42%, var(--pkg-border));
+    }
+
+    #packagesPage .pkg-card--custom {
+      background: linear-gradient(145deg, color-mix(in oklab, var(--accent) 8%, #fff), #fff);
+      border-color: color-mix(in oklab, var(--accent) 30%, var(--pkg-border));
+      overflow: hidden;
+    }
+
+    #packagesPage .pkg-card--custom::before {
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      top: -96px;
+      right: -54px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 45% 45%, color-mix(in oklab, var(--accent) 24%, transparent), transparent 68%);
+      pointer-events: none;
+      opacity: .72;
+    }
+
+    #packagesPage .pkg-cardHead {
+      display: grid;
+      gap: .56rem;
+    }
+
+    #packagesPage .pkg-checkboxWrap {
+      display: flex;
+      align-items: center;
+      gap: .56rem;
+      padding: .55rem .62rem;
+      border: 1px solid var(--pkg-border);
+      border-radius: 12px;
+      background: color-mix(in oklab, var(--surface) 86%, transparent);
+      width: fit-content;
+      max-width: 100%;
+    }
+
+    #packagesPage .pkg-checkboxWrap input[type="checkbox"] {
+      inline-size: 18px;
+      block-size: 18px;
+      accent-color: color-mix(in oklab, var(--accent) 88%, var(--ink-2));
+      cursor: pointer;
+      margin: 0;
+    }
+
+    #packagesPage .pkg-checkboxWrap input[type="checkbox"]:disabled {
+      cursor: not-allowed;
+      opacity: .55;
+    }
+
+    #packagesPage .pkg-checkboxWrap label {
+      cursor: pointer;
+      font-weight: 700;
+      font-size: .94rem;
+      letter-spacing: -.01em;
+    }
+
+    #packagesPage .pkg-checkboxWrap input[type="checkbox"]:disabled + label {
+      cursor: not-allowed;
+      opacity: .7;
+    }
+
+    #packagesPage .pkg-cardTitle {
+      margin: 0;
+      font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+      letter-spacing: -.015em;
+      line-height: 1.2;
+    }
+
+    #packagesPage .pkg-cardIntro {
+      margin: 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    #packagesPage .pkg-featureList {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: .56rem;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    #packagesPage .pkg-featureList li {
+      position: relative;
+      padding-left: 1.08rem;
+    }
+
+    #packagesPage .pkg-featureList li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .52rem;
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: color-mix(in oklab, var(--accent) 72%, white);
+      box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 10%, transparent);
+    }
+
+    #packagesPage .pkg-customSummary {
+      margin: 0;
+      color: var(--muted);
+      font-size: .94rem;
+    }
+
+    #packagesPage .pkg-customSummary[data-state="configured"] {
+      color: color-mix(in oklab, var(--accent) 74%, var(--text));
+      font-weight: 700;
+    }
+
+    #packagesPage .pkg-customBadge {
+      display: none;
+      width: fit-content;
+      padding: .34rem .58rem;
+      border-radius: 999px;
+      border: 1px solid color-mix(in oklab, var(--accent) 28%, var(--pkg-border));
+      background: color-mix(in oklab, var(--accent) 12%, var(--surface));
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: -.01em;
+      color: color-mix(in oklab, var(--accent) 72%, var(--text));
+    }
+
+    #packagesPage .pkg-customBadge.is-visible {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+    }
+
+    #packagesPage .pkg-customActions {
+      margin-top: auto;
+      display: flex;
+      gap: .56rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    #packagesPage .pkg-builderBtn {
+      margin-top: auto;
+    }
+
+    #packagesPage .pkg-builderBtn:disabled,
+    #packagesPage #editCustomBtn:disabled {
+      cursor: not-allowed;
+      opacity: .62;
+    }
+
+    #packagesPage .pkg-review {
+      margin-top: 1.15rem;
+      border: 1px solid var(--pkg-border);
+      border-radius: 16px;
+      background: color-mix(in oklab, var(--surface) 86%, transparent);
+      padding: .9rem .95rem;
+      display: grid;
+      gap: .52rem;
+    }
+
+    #packagesPage .pkg-reviewTitle {
+      margin: 0;
+      font-size: .98rem;
+      font-weight: 800;
+      letter-spacing: -.01em;
+    }
+
+    #packagesPage .pkg-reviewLine {
+      margin: 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    #packagesPage .pkg-actions {
+      margin-top: 1rem;
+      display: grid;
+      gap: .75rem;
+      justify-items: center;
+      text-align: center;
+    }
+
+    #packagesPage .pkg-actionLead {
+      margin: 0;
+      font-size: .95rem;
+      font-weight: 700;
+      color: color-mix(in oklab, var(--accent) 72%, var(--text));
+    }
+
+    #packagesPage #submitPreferencesBtn {
+      width: min(100%, 560px);
+      min-height: 64px;
+      padding: 1.12rem 2rem;
+      font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+      font-weight: 800;
+      letter-spacing: -.01em;
+      box-shadow: 0 18px 36px rgba(203, 90, 79, .28), var(--shadow-inset);
+    }
+
+    #packagesPage .pkg-error {
+      margin: 0;
+      border: 1px solid color-mix(in oklab, var(--danger) 54%, var(--pkg-border));
+      border-radius: 12px;
+      background: color-mix(in oklab, var(--danger) 10%, var(--surface));
+      color: color-mix(in oklab, var(--danger) 78%, var(--text));
+      padding: .62rem .72rem;
+      font-size: .92rem;
+    }
+
+    #packagesPage .pkg-status {
+      margin: 0;
+      border-radius: 12px;
+      border: 1px solid var(--pkg-border);
+      background: color-mix(in oklab, var(--surface) 88%, transparent);
+      color: var(--muted);
+      padding: .68rem .75rem;
+      font-size: .92rem;
+    }
+
+    #packagesPage .pkg-status.is-success {
+      border-color: color-mix(in oklab, #299b57 42%, var(--pkg-border));
+      background: color-mix(in oklab, #299b57 12%, var(--surface));
+      color: color-mix(in oklab, #1f6f40 88%, var(--text));
+      font-weight: 700;
+    }
+
+    #packagesPage .pkg-status.is-warning {
+      border-color: color-mix(in oklab, #d4831a 44%, var(--pkg-border));
+      background: color-mix(in oklab, #d4831a 12%, var(--surface));
+      color: color-mix(in oklab, #8a540e 90%, var(--text));
+      font-weight: 600;
+    }
+
+    #packagesPage .pkg-calendar {
+      margin-top: clamp(2rem, 5vw, 3.5rem);
+      border: 1px solid var(--pkg-border);
+      border-radius: 20px;
+      background: color-mix(in oklab, #fff 90%, var(--paper-0));
+      box-shadow: var(--pkg-shadow);
+      padding: clamp(1rem, 2.6vw, 1.4rem);
+      transition: border-color 280ms var(--pkg-ease), box-shadow 280ms var(--pkg-ease), transform 280ms var(--pkg-ease);
+    }
+
+    #packagesPage .pkg-calendar.is-highlighted {
+      border-color: color-mix(in oklab, var(--accent) 44%, var(--pkg-border));
+      box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 20%, transparent), var(--pkg-shadow);
+      transform: translateY(-1px);
+    }
+
+    #packagesPage .pkg-stepTag {
+      margin: 0;
+      font-size: .83rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: color-mix(in oklab, var(--accent) 72%, var(--text));
+      font-weight: 700;
+    }
+
+    #packagesPage .pkg-calendarTitle {
+      margin: .52rem 0 0;
+      font-family: var(--font-serif);
+      font-size: clamp(1.45rem, 2.7vw, 2rem);
+      font-weight: 400;
+      letter-spacing: -.02em;
+    }
+
+    #packagesPage .pkg-calendarCopy {
+      margin: .62rem 0 0;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+
+    #packagesPage .pkg-calendlySlot {
+      margin-top: .95rem;
+      border: 1px dashed color-mix(in oklab, var(--accent) 28%, var(--pkg-border));
+      border-radius: 14px;
+      background: color-mix(in oklab, var(--accent) 5%, var(--surface));
+      min-height: 360px;
+      display: grid;
+      place-items: stretch;
+      text-align: left;
+      padding: 1rem;
+      color: var(--muted);
+    }
+
+    #packagesPage .pkg-calendlySlot p {
+      margin: 0;
+      max-width: 46ch;
+    }
+
+    #packagesPage .pkg-calendlySlot .calendly-inline-widget {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .pkg-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+      background: rgba(10, 18, 31, .56);
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 220ms var(--pkg-ease);
+    }
+
+    .pkg-modal.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .pkg-modalPanel {
+      width: min(100%, 760px);
+      max-height: min(86vh, 860px);
+      overflow: auto;
+      background: linear-gradient(180deg, #fff, color-mix(in oklab, var(--paper-0) 84%, #fff));
+      border: 1px solid var(--pkg-border-strong);
+      border-radius: 20px;
+      box-shadow: 0 34px 70px rgba(10, 18, 31, .24);
+      padding: clamp(1rem, 2.5vw, 1.35rem);
+      position: relative;
+    }
+
+    .pkg-modalTitle {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+      font-weight: 400;
+      letter-spacing: -.02em;
+    }
+
+    .pkg-modalCopy {
+      margin: .52rem 0 0;
+      color: var(--muted);
+    }
+
+    .pkg-services {
+      margin: .95rem 0 0;
+      border: 1px solid var(--pkg-border);
+      border-radius: 14px;
+      background: color-mix(in oklab, var(--surface) 90%, transparent);
+      padding: .78rem;
+      display: grid;
+      gap: .5rem;
+      max-height: 38vh;
+      overflow: auto;
+    }
+
+    .pkg-serviceItem {
+      display: flex;
+      align-items: flex-start;
+      gap: .56rem;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      padding: .44rem .48rem;
+      transition: background 220ms var(--pkg-ease), border-color 220ms var(--pkg-ease);
+    }
+
+    .pkg-serviceItem:hover {
+      background: color-mix(in oklab, var(--accent) 7%, var(--surface));
+      border-color: color-mix(in oklab, var(--accent) 20%, var(--pkg-border));
+    }
+
+    .pkg-serviceItem input[type="checkbox"] {
+      margin-top: .15rem;
+      inline-size: 18px;
+      block-size: 18px;
+      accent-color: color-mix(in oklab, var(--accent) 88%, var(--ink-2));
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
+
+    .pkg-serviceItem label {
+      cursor: pointer;
+      color: var(--text);
+      font-size: .94rem;
+      line-height: 1.4;
+    }
+
+    .pkg-serviceEmpty {
+      margin: 0;
+      color: var(--muted);
+      font-size: .94rem;
+    }
+
+    .pkg-notesWrap {
+      margin-top: .8rem;
+    }
+
+    .pkg-notesWrap label {
+      display: block;
+      margin-bottom: .42rem;
+      font-weight: 700;
+      letter-spacing: -.01em;
+    }
+
+    .pkg-notesWrap textarea {
+      width: 100%;
+      min-height: 112px;
+      resize: vertical;
+      border-radius: 12px;
+      border: 1px solid var(--pkg-border);
+      background: color-mix(in oklab, var(--surface) 90%, transparent);
+      padding: .72rem .76rem;
+      transition: border-color 220ms var(--pkg-ease), background 220ms var(--pkg-ease);
+    }
+
+    .pkg-notesWrap textarea:hover {
+      border-color: var(--pkg-border-strong);
+    }
+
+    .pkg-notesWrap textarea:focus {
+      outline: none;
+      border-color: color-mix(in oklab, var(--accent) 44%, var(--pkg-border));
+      background: #fff;
+    }
+
+    .pkg-modalActions {
+      margin-top: .95rem;
+      display: flex;
+      gap: .58rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #packagesPage .pkg-card,
+      #packagesPage .pkg-calendar,
+      .pkg-modal,
+      .pkg-tutorialOverlay,
+      .pkg-closeBtn {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Header -->
+  <header class="site-header" data-header>
+    <div class="container header__inner">
+      <a class="brand" href="index.html" aria-label="Laplace CC home">
+        <span class="brand__mark" aria-hidden="true">
+          <img class="brand__logo" src="laplacelogo.png" alt="" />
+        </span>
+        <span class="brand__text">Laplace CC</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <button class="nav__toggle" type="button" data-nav-toggle aria-controls="navPanel" aria-expanded="false">
+          <span class="nav__toggleLines" aria-hidden="true"></span>
+          <span class="sr-only">Open menu</span>
+        </button>
+
+        <div class="nav__panel" id="navPanel" data-nav-panel>
+          <ul class="nav__list" role="list">
+            <li><a class="nav__link" href="index.html">Home</a></li>
+            <li><a class="nav__link" href="packages.html" aria-current="page">Packages</a></li>
+            <li><a class="nav__link" href="testimonials.html">Testimonials</a></li>
+            <li><a class="nav__link" href="index.html#contact">Contact</a></li>
+          </ul>
+
+          <div class="nav__cta">
+            <a class="btn btn--primary btn--sm" href="index.html#contact">Book a Free Intro Call</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div id="packagesPage">
+      <section class="pkg-hero" aria-labelledby="packagesHeading">
+        <div class="pkg-wrap">
+          <p class="pkg-eyebrow">Laplace College Consulting</p>
+          <h1 class="pkg-title" id="packagesHeading">Packages</h1>
+          <p class="pkg-subtitle">Start by entering student details, then choose one or more packages (or build custom). When you finalize, we automatically send your preferences to our team email, then you schedule your free consultation.</p>
+          <p class="pkg-guideHint">Step 1: Student info • Step 2: Choose package • Step 3: Submit • Step 4: Schedule</p>
+        </div>
+      </section>
+
+      <section class="pkg-main" aria-label="Package selection">
+        <div class="pkg-wrap">
+          <section class="pkg-intake" aria-labelledby="studentInfoHeading">
+            <h2 class="pkg-stepTitle" id="studentInfoHeading">Step 1: Student Information (required)</h2>
+            <p class="pkg-stepCopy">Before choosing package preferences, enter the student's information below.</p>
+            <div class="pkg-intakeGrid" role="group" aria-label="Required student information">
+              <div class="pkg-field">
+                <label for="studentName">Student name <span aria-hidden="true">*</span></label>
+                <input id="studentName" name="studentName" type="text" autocomplete="name" required />
+              </div>
+              <div class="pkg-field">
+                <label for="studentGrade">Current grade <span aria-hidden="true">*</span></label>
+                <select id="studentGrade" name="studentGrade" required>
+                  <option value="">Select grade</option>
+                  <option value="8th Grade">8th Grade</option>
+                  <option value="9th Grade">9th Grade</option>
+                  <option value="10th Grade">10th Grade</option>
+                  <option value="11th Grade">11th Grade</option>
+                  <option value="12th Grade">12th Grade</option>
+                  <option value="Gap Year">Gap Year</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="pkg-field">
+                <label for="studentSchool">School name <span aria-hidden="true">*</span></label>
+                <input id="studentSchool" name="studentSchool" type="text" autocomplete="organization" required />
+              </div>
+            </div>
+          </section>
+
+          <section class="pkg-selection" id="packageSelectionSection" data-locked="true" aria-labelledby="packageSelectionHeading">
+            <h2 class="pkg-stepTitle" id="packageSelectionHeading">Step 2: Choose package options</h2>
+            <p class="pkg-stepCopy">You can select one package or multiple packages. If none of the standard options fit perfectly, use the Custom Package card in the bottom-right to build your own.</p>
+            <p class="pkg-lockHint" id="packageLockHint" data-state="locked" aria-live="polite">Complete Step 1 to unlock package checkboxes and custom builder.</p>
+
+            <ul class="pkg-grid" id="packagesGrid" role="list">
+            <li class="pkg-card" id="pkg1">
+              <div class="pkg-cardHead">
+                <div class="pkg-checkboxWrap">
+                  <input id="selectPkg1" type="checkbox" name="standardPackages" value="pkg1" />
+                  <label for="selectPkg1">Select this package</label>
+                </div>
+                <h2 class="pkg-cardTitle">Roadmap Package</h2>
+                <p class="pkg-cardIntro">A full, tailored roadmap with structured execution support.</p>
+              </div>
+
+              <ul class="pkg-featureList">
+                <li>A full, tailored roadmap: course plan, EC strategy, awards/competitions, testing, rec letters, summer plans.</li>
+                <li>Clear weekly/monthly execution plan so students always know what to do next.</li>
+                <li>Network guidance: we connect you to the right person for questions (ECs, grades, essays, etc.).</li>
+                <li>Ongoing support with a guaranteed response window (ex: 48 hours).</li>
+              </ul>
+            </li>
+
+            <li class="pkg-card" id="pkg2">
+              <div class="pkg-cardHead">
+                <div class="pkg-checkboxWrap">
+                  <input id="selectPkg2" type="checkbox" name="standardPackages" value="pkg2" />
+                  <label for="selectPkg2">Select this package</label>
+                </div>
+                <h2 class="pkg-cardTitle">Roadmap + Accelerator Package</h2>
+                <p class="pkg-cardIntro">Everything in Roadmap Blueprint, plus:</p>
+              </div>
+
+              <ul class="pkg-featureList">
+                <li>High-touch support for strategy + decisions (classes, EC pivots, leadership, competition selection).</li>
+                <li>Competition &amp; leadership methods (Wharton, WEC, NEC, and similar).</li>
+                <li>Scholarship strategy examples (Coke, Coolidge, GHP, etc.) + review of selected submissions.</li>
+                <li>Tutor matching when needed.</li>
+                <li>Essay support bundle (ex: multiple offline revisions for key essays).</li>
+              </ul>
+            </li>
+
+            <li class="pkg-card" id="pkg3">
+              <div class="pkg-cardHead">
+                <div class="pkg-checkboxWrap">
+                  <input id="selectPkg3" type="checkbox" name="standardPackages" value="pkg3" />
+                  <label for="selectPkg3">Select this package</label>
+                </div>
+                <h2 class="pkg-cardTitle">Laplace Elite Package</h2>
+                <p class="pkg-cardIntro">Everything in Roadmap + Accelerator, plus:</p>
+              </div>
+
+              <ul class="pkg-featureList">
+                <li>24/7 unlimited support - ask anything, anytime (ECs, classes, comps, essays, strategy).</li>
+                <li>Full access to the HYPSM alumni network + past LaPlace client admits’ Common Apps.</li>
+                <li>Unlimited offline essay revisions (Common App + supplements + scholarships).</li>
+                <li>Inside connections to help access private / hard-to-reach ECs &amp; leadership opportunities (when available).</li>
+                <li>End-to-end execution support through applications + final positioning.</li>
+              </ul>
+            </li>
+
+            <li class="pkg-card pkg-card--custom" id="customPackageCard">
+              <div class="pkg-cardHead">
+                <h2 class="pkg-cardTitle" id="customPackageHeading">Custom Package</h2>
+                <p class="pkg-cardIntro">Mix and match services to build a package that fits your exact goals, timeline, and support level.</p>
+              </div>
+
+              <p class="pkg-customSummary" id="customSummary" data-state="empty">No custom services selected yet.</p>
+              <p class="pkg-customBadge" id="customConfiguredBadge" aria-live="polite">Configured</p>
+
+              <div class="pkg-customActions">
+                <button class="btn btn--primary pkg-builderBtn" id="openBuilderBtn" type="button" aria-haspopup="dialog" aria-controls="customBuilderModal">Build My Custom Package</button>
+                <button class="btn btn--ghost" id="editCustomBtn" type="button" hidden>Edit Custom Package</button>
+              </div>
+            </li>
+            </ul>
+
+            <section class="pkg-review" aria-live="polite" aria-label="Selection summary">
+              <h2 class="pkg-reviewTitle">Review Selections</h2>
+              <p class="pkg-reviewLine" id="selectedStudentLine">Student info: Missing required fields.</p>
+              <p class="pkg-reviewLine" id="selectedStandardLine">Selected packages: None yet.</p>
+              <p class="pkg-reviewLine" id="selectedCustomLine">Custom package: Not configured.</p>
+            </section>
+
+            <div class="pkg-actions">
+              <p class="pkg-actionLead">Step 3: Submit your selections.</p>
+              <button class="btn btn--primary" id="submitPreferencesBtn" type="button">Finalize Package &amp; Continue to Scheduling</button>
+              <p class="pkg-error" id="submitError" role="alert" hidden></p>
+              <p class="pkg-status" id="submitStatus" role="status" aria-live="polite" hidden></p>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="pkg-wrap">
+        <div class="pkg-calendar" id="calendlySection" aria-labelledby="calendlyHeading">
+          <p class="pkg-stepTag" id="calendlyStepLabel">Step 4 (required): Schedule your free consultation to move forward.</p>
+          <h2 class="pkg-calendarTitle" id="calendlyHeading">Schedule Your Free Consultation</h2>
+          <p class="pkg-calendarCopy">After you submit your package preferences above, use the scheduler below to book your consultation time.</p>
+
+          <div class="pkg-calendlySlot">
+            <!-- Calendly inline widget begin -->
+            <div class="calendly-inline-widget" data-url="https://calendly.com/laplacecc/freeconsultation" style="width:100%;min-width:320px;height:760px;"></div>
+            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+            <!-- Calendly inline widget end -->
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Tutorial Overlay (first visit only) -->
+  <div class="pkg-tutorialOverlay" id="tutorialOverlay" hidden>
+    <section class="pkg-tutorial" aria-labelledby="tutorialTitle" aria-describedby="tutorialDesc" role="dialog" aria-modal="true">
+      <button class="pkg-closeBtn" id="closeTutorialBtn" type="button" aria-label="Close tutorial">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+        </svg>
+      </button>
+      <h2 class="pkg-tutorialTitle" id="tutorialTitle">How to complete this page</h2>
+      <p class="pkg-tutorialCopy" id="tutorialDesc">Follow the full flow below. You must complete each step in order:</p>
+      <ol class="pkg-tutorialSteps">
+        <li>
+          <span class="pkg-stepNum">1.</span>
+          <span>Enter the required student information: <strong>Name, Current Grade, and School</strong>.</span>
+        </li>
+        <li>
+          <span class="pkg-stepNum">2.</span>
+          <span>Select one or more standard packages using the checkboxes, <strong>or</strong> use the Custom Package card to configure your own service mix.</span>
+        </li>
+        <li>
+          <span class="pkg-stepNum">3.</span>
+          <span>Click <strong>Finalize Package &amp; Continue to Scheduling</strong> to automatically send your selections to our team email.</span>
+        </li>
+        <li>
+          <span class="pkg-stepNum">4.</span>
+          <span>After submitting, schedule your free consultation in the Calendly section to move forward.</span>
+        </li>
+      </ol>
+      <p class="pkg-tutorialWarn">Required to move forward: submit your preferences first, then schedule via Calendly.</p>
+      <div class="pkg-tutorialActions">
+        <button class="btn btn--primary" id="dismissTutorialBtn" type="button">Got it</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- Custom Builder Modal -->
+  <div class="pkg-modal" id="customBuilderModal" hidden>
+    <section class="pkg-modalPanel" role="dialog" aria-modal="true" aria-labelledby="customBuilderTitle" aria-describedby="customBuilderDesc">
+      <button class="pkg-closeBtn" id="closeBuilderBtn" type="button" aria-label="Close custom package builder">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+        </svg>
+      </button>
+
+      <h2 class="pkg-modalTitle" id="customBuilderTitle">Custom Package Builder</h2>
+      <p class="pkg-modalCopy" id="customBuilderDesc">Select any services you want to mix and match, then save your custom package.</p>
+
+      <div class="pkg-services" id="customServicesList" role="group" aria-label="Custom services">
+        <!-- CUSTOM SERVICES RENDER HERE -->
+      </div>
+
+      <div class="pkg-notesWrap">
+        <label for="customNotes">Notes / Additional details (optional)</label>
+        <textarea id="customNotes" name="customNotes" placeholder="Add any context, priorities, timeline notes, or special requests."></textarea>
+      </div>
+
+      <div class="pkg-modalActions">
+        <button class="btn btn--ghost" id="clearCustomBtn" type="button">Clear all</button>
+        <button class="btn btn--ghost" id="cancelBuilderBtn" type="button">Cancel</button>
+        <button class="btn btn--primary" id="saveCustomBtn" type="button">Save Custom Package</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer" aria-label="Footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a class="brand brand--footer" href="index.html" aria-label="Laplace CC home">
+          <span class="brand__text">Laplace CC</span>
+        </a>
+        <p class="muted">
+          Admissions outcomes vary. We provide guidance and strategy.
+        </p>
+      </div>
+
+      <nav class="footer__nav" aria-label="Footer links">
+        <div class="footer__col">
+          <p class="footer__title">Pages</p>
+          <ul role="list" class="footer__list">
+            <li><a class="footer__link" href="index.html">Home</a></li>
+            <li><a class="footer__link" href="packages.html">Packages</a></li>
+            <li><a class="footer__link" href="testimonials.html">Testimonials</a></li>
+            <li><a class="footer__link" href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <p class="footer__title">Social</p>
+          <ul role="list" class="footer__list">
+            <li><a class="footer__link" href="https://instagram.com/laplace_cc" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="footer__fineprint">
+        <p class="fineprint">© <span data-year></span> Laplace College Consulting. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+  <script>
+    (() => {
+      const TUTORIAL_KEY = "packagesTutorialSeen";
+      const CUSTOM_KEY = "packagesCustomSelection";
+      const STUDENT_INFO_KEY = "packagesStudentInfo";
+      const PACKAGE_ENDPOINT = "/api/package-preferences";
+      const BUSINESS_NOTIFICATION_EMAIL = "laplacecollegeconsulting@gmail.com";
+      const FORMSUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${BUSINESS_NOTIFICATION_EMAIL}`;
+      const CUSTOM_SERVICES = [
+        // I WILL PASTE SERVICES HERE
+        "Application strategy roadmap",
+        "Extracurricular positioning plan",
+        "Competition / awards planning",
+        "Common App personal statement support",
+        "Supplemental essay editing",
+        "Activities list optimization",
+        "School list strategy (reach/target/safety)",
+        "Recommendation letter strategy",
+        "Scholarship application support",
+        "Interview preparation"
+      ];
+
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const focusableSelector = "a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex='-1'])";
+
+      const tutorialOverlay = document.getElementById("tutorialOverlay");
+      const closeTutorialBtn = document.getElementById("closeTutorialBtn");
+      const dismissTutorialBtn = document.getElementById("dismissTutorialBtn");
+
+      const customModal = document.getElementById("customBuilderModal");
+      const openBuilderBtn = document.getElementById("openBuilderBtn");
+      const editCustomBtn = document.getElementById("editCustomBtn");
+      const closeBuilderBtn = document.getElementById("closeBuilderBtn");
+      const cancelBuilderBtn = document.getElementById("cancelBuilderBtn");
+      const clearCustomBtn = document.getElementById("clearCustomBtn");
+      const saveCustomBtn = document.getElementById("saveCustomBtn");
+      const customServicesList = document.getElementById("customServicesList");
+      const customNotesInput = document.getElementById("customNotes");
+
+      const customSummary = document.getElementById("customSummary");
+      const customConfiguredBadge = document.getElementById("customConfiguredBadge");
+      const selectedStudentLine = document.getElementById("selectedStudentLine");
+      const selectedStandardLine = document.getElementById("selectedStandardLine");
+      const selectedCustomLine = document.getElementById("selectedCustomLine");
+      const submitBtn = document.getElementById("submitPreferencesBtn");
+      const submitError = document.getElementById("submitError");
+      const submitStatus = document.getElementById("submitStatus");
+      const calendlySection = document.getElementById("calendlySection");
+      const calendlyStepLabel = document.getElementById("calendlyStepLabel");
+      const studentNameInput = document.getElementById("studentName");
+      const studentGradeInput = document.getElementById("studentGrade");
+      const studentSchoolInput = document.getElementById("studentSchool");
+      const packageSelectionSection = document.getElementById("packageSelectionSection");
+      const packageLockHint = document.getElementById("packageLockHint");
+
+      const standardCheckboxes = Array.from(document.querySelectorAll("input[name='standardPackages']"));
+
+      if (
+        !tutorialOverlay ||
+        !closeTutorialBtn ||
+        !dismissTutorialBtn ||
+        !customModal ||
+        !openBuilderBtn ||
+        !editCustomBtn ||
+        !closeBuilderBtn ||
+        !cancelBuilderBtn ||
+        !clearCustomBtn ||
+        !saveCustomBtn ||
+        !customServicesList ||
+        !customNotesInput ||
+        !customSummary ||
+        !customConfiguredBadge ||
+        !selectedStudentLine ||
+        !selectedStandardLine ||
+        !selectedCustomLine ||
+        !submitBtn ||
+        !submitError ||
+        !submitStatus ||
+        !calendlySection ||
+        !calendlyStepLabel ||
+        !studentNameInput ||
+        !studentGradeInput ||
+        !studentSchoolInput ||
+        !packageSelectionSection ||
+        !packageLockHint
+      ) {
+        return;
+      }
+
+      let modalPreviousFocus = null;
+      let tutorialPreviousFocus = null;
+      let isSubmitting = false;
+
+      const getInitialCustomState = () => ({ selectedServices: [], notes: "" });
+
+      const parseCustomState = () => {
+        try {
+          const raw = localStorage.getItem(CUSTOM_KEY);
+          if (!raw) return getInitialCustomState();
+          const parsed = JSON.parse(raw);
+          const selectedServices = Array.isArray(parsed.selectedServices)
+            ? parsed.selectedServices.filter((item) => typeof item === "string")
+            : [];
+          const notes = typeof parsed.notes === "string" ? parsed.notes : "";
+          return { selectedServices, notes };
+        } catch {
+          return getInitialCustomState();
+        }
+      };
+
+      const getInitialStudentState = () => ({ name: "", grade: "", school: "" });
+
+      const parseStudentState = () => {
+        try {
+          const raw = localStorage.getItem(STUDENT_INFO_KEY);
+          if (!raw) return getInitialStudentState();
+          const parsed = JSON.parse(raw);
+          const name = typeof parsed.name === "string" ? parsed.name : "";
+          const grade = typeof parsed.grade === "string" ? parsed.grade : "";
+          const school = typeof parsed.school === "string" ? parsed.school : "";
+          return { name, grade, school };
+        } catch {
+          return getInitialStudentState();
+        }
+      };
+
+      let persistedCustom = parseCustomState();
+      let draftCustom = { ...persistedCustom, selectedServices: [...persistedCustom.selectedServices] };
+      let persistedStudent = parseStudentState();
+
+      const hasCustomConfigured = (custom) => custom.selectedServices.length > 0 || custom.notes.trim().length > 0;
+      const isStudentInfoComplete = (student) => Boolean(student.name.trim() && student.grade.trim() && student.school.trim());
+
+      const readStudentInfo = () => ({
+        name: studentNameInput.value.trim(),
+        grade: studentGradeInput.value.trim(),
+        school: studentSchoolInput.value.trim()
+      });
+
+      const getFirstMissingStudentField = (student) => {
+        if (!student.name.trim()) return studentNameInput;
+        if (!student.grade.trim()) return studentGradeInput;
+        if (!student.school.trim()) return studentSchoolInput;
+        return null;
+      };
+
+      const persistStudentInfo = (student) => {
+        persistedStudent = student;
+        localStorage.setItem(STUDENT_INFO_KEY, JSON.stringify(student));
+      };
+
+      const setPackageLockState = (locked) => {
+        packageSelectionSection.dataset.locked = locked ? "true" : "false";
+        packageLockHint.dataset.state = locked ? "locked" : "ready";
+        packageLockHint.textContent = locked
+          ? "Complete Step 1 to unlock package checkboxes and custom builder."
+          : "Step 1 complete. Package checkboxes and custom builder are unlocked.";
+
+        standardCheckboxes.forEach((checkbox) => {
+          checkbox.disabled = locked;
+        });
+
+        openBuilderBtn.disabled = locked;
+        editCustomBtn.disabled = locked;
+        submitBtn.disabled = locked || isSubmitting;
+      };
+
+      const setStatus = (message, tone) => {
+        if (!message) {
+          submitStatus.hidden = true;
+          submitStatus.textContent = "";
+          submitStatus.classList.remove("is-success", "is-warning");
+          return;
+        }
+        submitStatus.hidden = false;
+        submitStatus.textContent = message;
+        submitStatus.classList.remove("is-success", "is-warning");
+        if (tone === "success") submitStatus.classList.add("is-success");
+        if (tone === "warning") submitStatus.classList.add("is-warning");
+      };
+
+      const setError = (message) => {
+        if (!message) {
+          submitError.hidden = true;
+          submitError.textContent = "";
+          return;
+        }
+        submitError.hidden = false;
+        submitError.textContent = message;
+      };
+
+      const getSelectedStandardPackages = () => {
+        return standardCheckboxes
+          .filter((checkbox) => checkbox.checked)
+          .map((checkbox) => {
+            const card = checkbox.closest(".pkg-card");
+            const titleEl = card ? card.querySelector(".pkg-cardTitle") : null;
+            const title = titleEl ? titleEl.textContent.trim() : checkbox.value;
+            return { id: checkbox.value, title };
+          });
+      };
+
+      const updateReviewSummary = () => {
+        const student = readStudentInfo();
+        if (isStudentInfoComplete(student)) {
+          selectedStudentLine.textContent = `Student info: ${student.name}, ${student.grade}, ${student.school}`;
+        } else {
+          selectedStudentLine.textContent = "Student info: Missing required fields.";
+        }
+
+        const selectedStandard = getSelectedStandardPackages();
+        if (selectedStandard.length === 0) {
+          selectedStandardLine.textContent = "Selected packages: None yet.";
+        } else {
+          const names = selectedStandard.map((item) => item.title).join(", ");
+          selectedStandardLine.textContent = `Selected packages: ${names}`;
+        }
+
+        if (hasCustomConfigured(persistedCustom)) {
+          const count = persistedCustom.selectedServices.length;
+          const notesLabel = persistedCustom.notes.trim() ? " + notes added" : "";
+          selectedCustomLine.textContent = `Custom package: ${count} service${count === 1 ? "" : "s"} selected${notesLabel}.`;
+        } else {
+          selectedCustomLine.textContent = "Custom package: Not configured.";
+        }
+      };
+
+      const hydrateStudentInfo = () => {
+        studentNameInput.value = persistedStudent.name;
+        studentGradeInput.value = persistedStudent.grade;
+        studentSchoolInput.value = persistedStudent.school;
+      };
+
+      const syncStepLock = () => {
+        const student = readStudentInfo();
+        const complete = isStudentInfoComplete(student);
+        setPackageLockState(!complete);
+        updateReviewSummary();
+      };
+
+      const handleStudentInfoChange = () => {
+        persistStudentInfo(readStudentInfo());
+        syncStepLock();
+        if (!submitError.hidden) {
+          setError("");
+        }
+      };
+
+      const updateCustomCardState = () => {
+        if (!hasCustomConfigured(persistedCustom)) {
+          customSummary.dataset.state = "empty";
+          customSummary.textContent = "No custom services selected yet.";
+          customConfiguredBadge.classList.remove("is-visible");
+          customConfiguredBadge.textContent = "Configured";
+          editCustomBtn.hidden = true;
+          openBuilderBtn.textContent = "Build My Custom Package";
+          return;
+        }
+
+        const count = persistedCustom.selectedServices.length;
+        const hasNotes = persistedCustom.notes.trim().length > 0;
+        customSummary.dataset.state = "configured";
+        customSummary.textContent = `Custom package selected (${count} service${count === 1 ? "" : "s"}${hasNotes ? ", notes included" : ""}).`;
+        customConfiguredBadge.classList.add("is-visible");
+        customConfiguredBadge.textContent = `${count} service${count === 1 ? "" : "s"} selected`;
+        editCustomBtn.hidden = false;
+        openBuilderBtn.textContent = "Open Custom Builder";
+      };
+
+      const renderServices = () => {
+        customServicesList.innerHTML = "";
+        if (!CUSTOM_SERVICES.length) {
+          const empty = document.createElement("p");
+          empty.className = "pkg-serviceEmpty";
+          empty.textContent = "No services added yet. Paste your services into the CUSTOM_SERVICES array in this file.";
+          customServicesList.appendChild(empty);
+          return;
+        }
+
+        const fragment = document.createDocumentFragment();
+        CUSTOM_SERVICES.forEach((service, index) => {
+          const id = `customService_${index}`;
+          const wrap = document.createElement("div");
+          wrap.className = "pkg-serviceItem";
+
+          const input = document.createElement("input");
+          input.type = "checkbox";
+          input.id = id;
+          input.name = "customServices";
+          input.value = service;
+          input.checked = draftCustom.selectedServices.includes(service);
+
+          const label = document.createElement("label");
+          label.setAttribute("for", id);
+          label.textContent = service;
+
+          wrap.appendChild(input);
+          wrap.appendChild(label);
+          fragment.appendChild(wrap);
+        });
+
+        customServicesList.appendChild(fragment);
+      };
+
+      const readDraftFromBuilder = () => {
+        const selectedServices = Array.from(customServicesList.querySelectorAll("input[name='customServices']:checked"))
+          .map((input) => input.value);
+        const notes = customNotesInput.value || "";
+        return { selectedServices, notes };
+      };
+
+      const isCustomDraftDirty = () => {
+        const current = readDraftFromBuilder();
+        if (current.notes !== persistedCustom.notes) return true;
+        if (current.selectedServices.length !== persistedCustom.selectedServices.length) return true;
+        const persistedSet = new Set(persistedCustom.selectedServices);
+        return current.selectedServices.some((item) => !persistedSet.has(item));
+      };
+
+      const closeTutorial = () => {
+        tutorialOverlay.classList.remove("is-open");
+        tutorialOverlay.hidden = true;
+        document.body.style.overflow = "";
+        if (tutorialPreviousFocus && typeof tutorialPreviousFocus.focus === "function") {
+          tutorialPreviousFocus.focus();
+        }
+      };
+
+      const openTutorial = () => {
+        tutorialPreviousFocus = document.activeElement;
+        tutorialOverlay.hidden = false;
+        requestAnimationFrame(() => tutorialOverlay.classList.add("is-open"));
+        document.body.style.overflow = "hidden";
+        closeTutorialBtn.focus();
+      };
+
+      const dismissTutorial = () => {
+        localStorage.setItem(TUTORIAL_KEY, "true");
+        closeTutorial();
+      };
+
+      const trapFocus = (container, event) => {
+        if (event.key !== "Tab") return;
+        const focusable = Array.from(container.querySelectorAll(focusableSelector))
+          .filter((el) => el instanceof HTMLElement && el.offsetParent !== null);
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        const active = document.activeElement;
+
+        if (event.shiftKey && active === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && active === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      };
+
+      const openBuilder = (triggerEl) => {
+        modalPreviousFocus = triggerEl || document.activeElement;
+        draftCustom = { ...persistedCustom, selectedServices: [...persistedCustom.selectedServices] };
+        renderServices();
+        customNotesInput.value = draftCustom.notes;
+
+        customModal.hidden = false;
+        requestAnimationFrame(() => customModal.classList.add("is-open"));
+        document.body.style.overflow = "hidden";
+
+        const firstInput = customModal.querySelector("input[name='customServices'], #customNotes, #saveCustomBtn");
+        if (firstInput instanceof HTMLElement) firstInput.focus();
+      };
+
+      const closeBuilder = () => {
+        customModal.classList.remove("is-open");
+        customModal.hidden = true;
+        document.body.style.overflow = "";
+
+        if (modalPreviousFocus && typeof modalPreviousFocus.focus === "function") {
+          modalPreviousFocus.focus();
+        } else {
+          openBuilderBtn.focus();
+        }
+      };
+
+      const requestCloseBuilder = () => {
+        if (!isCustomDraftDirty()) {
+          closeBuilder();
+          return;
+        }
+        const confirmed = window.confirm("You have unsaved custom package changes. Close without saving?");
+        if (confirmed) closeBuilder();
+      };
+
+      const clearCustomDraft = () => {
+        customServicesList.querySelectorAll("input[name='customServices']").forEach((input) => {
+          input.checked = false;
+        });
+        customNotesInput.value = "";
+      };
+
+      const saveCustomPackage = () => {
+        persistedCustom = readDraftFromBuilder();
+        localStorage.setItem(CUSTOM_KEY, JSON.stringify(persistedCustom));
+        updateCustomCardState();
+        updateReviewSummary();
+        closeBuilder();
+      };
+
+      const buildPayload = () => {
+        const selectedStandard = getSelectedStandardPackages();
+        const customConfigured = hasCustomConfigured(persistedCustom);
+        const student = readStudentInfo();
+
+        return {
+          timestamp: new Date().toISOString(),
+          student,
+          selectedStandardPackages: selectedStandard,
+          customPackage: customConfigured
+            ? {
+                selectedServices: [...persistedCustom.selectedServices],
+                notes: persistedCustom.notes
+              }
+            : null,
+          destinationEmail: BUSINESS_NOTIFICATION_EMAIL,
+          page: "packages",
+          userAgent: navigator.userAgent
+        };
+      };
+
+      const buildPreferenceMessage = (payload) => {
+        const standardLines = payload.selectedStandardPackages.length
+          ? payload.selectedStandardPackages.map((pkg) => `- ${pkg.title} (${pkg.id})`).join("\n")
+          : "- None";
+
+        const customLines = payload.customPackage
+          ? [
+              `- Services (${payload.customPackage.selectedServices.length}):`,
+              ...payload.customPackage.selectedServices.map((service) => `  - ${service}`),
+              `- Notes: ${payload.customPackage.notes.trim() || "None"}`
+            ].join("\n")
+          : "- None";
+
+        return [
+          "New package preferences submission",
+          "",
+          `Timestamp: ${payload.timestamp}`,
+          `Page: ${payload.page}`,
+          `Student Name: ${payload.student.name}`,
+          `Student Grade: ${payload.student.grade}`,
+          `Student School: ${payload.student.school}`,
+          "",
+          "Selected standard packages:",
+          standardLines,
+          "",
+          "Custom package:",
+          customLines
+        ].join("\n");
+      };
+
+      const sendViaBackend = async (payload) => {
+        const response = await fetch(PACKAGE_ENDPOINT, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+          throw new Error(`Backend email request failed with status ${response.status}`);
+        }
+      };
+
+      const sendViaFormSubmit = async (payload) => {
+        const message = buildPreferenceMessage(payload);
+
+        const response = await fetch(FORMSUBMIT_ENDPOINT, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            _subject: "Package Preferences Submission",
+            _captcha: "false",
+            _template: "table",
+            destinationEmail: payload.destinationEmail,
+            timestamp: payload.timestamp,
+            page: payload.page,
+            studentName: payload.student.name,
+            studentGrade: payload.student.grade,
+            studentSchool: payload.student.school,
+            selectedStandardPackages: payload.selectedStandardPackages.map((pkg) => `${pkg.title} (${pkg.id})`).join(", ") || "None",
+            customPackageServices: payload.customPackage ? payload.customPackage.selectedServices.join(" | ") : "None",
+            customPackageNotes: payload.customPackage ? (payload.customPackage.notes.trim() || "None") : "None",
+            message
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error(`FormSubmit fallback failed with status ${response.status}`);
+        }
+      };
+
+      const highlightCalendly = () => {
+        calendlySection.classList.add("is-highlighted");
+        window.setTimeout(() => calendlySection.classList.remove("is-highlighted"), 2600);
+      };
+
+      const goToCalendly = () => {
+        calendlyStepLabel.textContent = "Step 4 (required): Schedule your free consultation to move forward.";
+        calendlySection.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+        highlightCalendly();
+      };
+
+      const submitPreferences = async () => {
+        setError("");
+        setStatus("");
+
+        const student = readStudentInfo();
+        if (!isStudentInfoComplete(student)) {
+          setError("Please enter student name, current grade, and school before finalizing package preferences.");
+          const missingField = getFirstMissingStudentField(student);
+          if (missingField) missingField.focus();
+          return;
+        }
+
+        persistStudentInfo(student);
+
+        const selectedStandard = getSelectedStandardPackages();
+        const customConfigured = hasCustomConfigured(persistedCustom);
+
+        if (!selectedStandard.length && !customConfigured) {
+          setError("Please select at least one standard package or configure a custom package before submitting.");
+          submitBtn.focus();
+          return;
+        }
+
+        isSubmitting = true;
+        submitBtn.disabled = true;
+        submitBtn.setAttribute("aria-busy", "true");
+        setStatus("Finalizing package and emailing your preferences...", null);
+
+        const payload = buildPayload();
+
+        try {
+          let usedFallback = false;
+          try {
+            await sendViaBackend(payload);
+          } catch (backendError) {
+            console.warn("Primary email route failed, attempting fallback service.", backendError);
+            usedFallback = true;
+            await sendViaFormSubmit(payload);
+          }
+
+          setStatus(
+            usedFallback
+              ? "Package finalized and preferences emailed successfully (fallback route). Next: schedule your free consultation below."
+              : "Package finalized and preferences emailed successfully. Next: schedule your free consultation below.",
+            "success"
+          );
+          goToCalendly();
+        } catch (error) {
+          console.error(error);
+          setError("Automatic email delivery is temporarily unavailable. Please try once more; if it still fails, contact us directly at laplacecollegeconsulting@gmail.com.");
+          setStatus("Email delivery failed on both routes. Your selections are still on the page and can be retried.", "warning");
+        } finally {
+          isSubmitting = false;
+          syncStepLock();
+          submitBtn.removeAttribute("aria-busy");
+        }
+      };
+
+      // Tutorial first-visit behavior
+      if (localStorage.getItem(TUTORIAL_KEY) !== "true") {
+        openTutorial();
+      }
+
+      closeTutorialBtn.addEventListener("click", dismissTutorial);
+      dismissTutorialBtn.addEventListener("click", dismissTutorial);
+
+      tutorialOverlay.addEventListener("click", (event) => {
+        if (event.target === tutorialOverlay) dismissTutorial();
+      });
+
+      tutorialOverlay.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          dismissTutorial();
+          return;
+        }
+        const panel = tutorialOverlay.querySelector(".pkg-tutorial");
+        if (panel) trapFocus(panel, event);
+      });
+
+      // Modal behavior
+      openBuilderBtn.addEventListener("click", () => openBuilder(openBuilderBtn));
+      editCustomBtn.addEventListener("click", () => openBuilder(editCustomBtn));
+      closeBuilderBtn.addEventListener("click", requestCloseBuilder);
+      cancelBuilderBtn.addEventListener("click", requestCloseBuilder);
+      clearCustomBtn.addEventListener("click", clearCustomDraft);
+      saveCustomBtn.addEventListener("click", saveCustomPackage);
+
+      customModal.addEventListener("click", (event) => {
+        if (event.target === customModal) requestCloseBuilder();
+      });
+
+      customModal.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          requestCloseBuilder();
+          return;
+        }
+        const panel = customModal.querySelector(".pkg-modalPanel");
+        if (panel) trapFocus(panel, event);
+      });
+
+      standardCheckboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change", updateReviewSummary);
+      });
+
+      [studentNameInput, studentGradeInput, studentSchoolInput].forEach((field) => {
+        field.addEventListener("input", handleStudentInfoChange);
+        field.addEventListener("change", handleStudentInfoChange);
+      });
+
+      submitBtn.addEventListener("click", submitPreferences);
+
+      // Initial UI state
+      hydrateStudentInfo();
+      updateCustomCardState();
+      renderServices();
+      syncStepLock();
+    })();
+  </script>
+  <!--
+    Developer Wiring:
+    1) Implement POST /api/package-preferences to accept JSON:
+       {
+         timestamp: ISO_STRING,
+         student: { name: string, grade: string, school: string },
+         selectedStandardPackages: [{ id: string, title: string }],
+         customPackage: { selectedServices: string[], notes: string } | null,
+         destinationEmail: string,
+         page: "packages",
+         userAgent: string
+       }
+    2) Backend should email this payload to destinationEmail and return a 2xx response on success.
+    3) On successful frontend submission, this page automatically scrolls to and highlights the Calendly section.
+  -->
+</body>
+</html>
